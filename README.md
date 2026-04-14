@@ -28,7 +28,8 @@ O projeto está dividido em módulos fundamentais que cobrem desde o iniciante a
 1.  **Fundamentos & Mindset:** Perfis de investidor (Conservador, Moderado e Arrojado) e o tripé dos investimentos (Risco, Retorno e Liquidez).
 2.  **Renda Fixa:** O porto seguro, funcionamento de títulos públicos/privados e a importância da reserva de emergência.
 3.  **Renda Variável (Ações & FIIs):** Como analisar empresas e fundos imobiliários através de indicadores de saúde financeira e geração de dividendos.
-4.  **Ativos Modernos (ETFs & Cripto):** Será?
+4.  **Gerenciador de Recursos**: Local para armazenar informações e obter insights sobre seus investimentos. 
+5.  **Ativos Modernos (ETFs & Cripto):** Será?
 ---
 
 ## 🧮 Ferramentas e Simuladores

@@ -1,21 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     text-decoration: none;
-    font-family: "Righteous", sans-serif;;
+    font-family: "Righteous", sans-serif;
+    ;
 }
 
-a{
+a {
     color: #FFFFFF;
 }
 
-.content{
+.content {
     width: 100%;
 }
 
-header{
+header {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -26,21 +27,89 @@ header{
     font-size: 16px;
 }
 
-header .logo{
+header .logo {
     font-size: 40px;
 }
 
-header a:hover{
+header a:hover {
     color: #FDC409;
 }
 
-.register{
+.register {
     background-color: #FDC409;
     padding: 4px;
     border-radius: 16px;
     color: #111111;
 }
 
-.register:hover{
+.register:hover {
     color: #FFFFFF;
+}
+
+
+/* ============================================== */
+
+
+.login__content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    flex-shrink: 10%;
+
+}
+
+.login__card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 50%;
+    height: 80vh;
+    background-color: #FFFFFF;
+    padding: 5%;
+}
+
+.login__text {
+    width: 90%;
+    font-size: 16px;
+    text-align: justify;
+}
+
+.login__card h1 {
+    font-size: 40px;
+}
+
+.login__card a {
+    color: #FDC409;
+}
+
+.login__logo {
+    height: 80vh;
+    background-color: #FDC409;
+}
+
+.login__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5%;
+}
+
+.login__form__input {
+    width: 95%;
+}
+
+#login__form__button {
+    display: flex;
+    justify-content: center;
+    background-color: #FDC409;
+    color: #FFFFFF;
+    padding: 1%;
+    width: 30%;
+    margin: auto;
+}
+.login__form__createacc{
+    text-align: center;
 }

@@ -116,6 +116,7 @@ header a:hover {
 
 .login__form__input {
     width: 95%;
+    height: 55px;
 }
 
 #login__form__button {

@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: "Righteous", sans-serif;;
+}
+
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: #111111;
+    padding: 25px;
+    font-size: 16px;
+}
+
+header .logo{
+    font-size: 40px;
+}
+
+a{
+    color: #FFFFFF;
+}
+
+.register{
+    background-color: #FDC409;
+    padding: 4px;
+    border-radius: 16px;
+    color: #111111;
+}

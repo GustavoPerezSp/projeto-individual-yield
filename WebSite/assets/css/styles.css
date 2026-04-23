@@ -46,6 +46,57 @@ header a:hover {
     color: #FFFFFF;
 }
 
+.section__investor_profile{
+    display: flex;
+    flex-direction: row;
+    width: 96.3%;
+    height: 450px;
+    background-color: #FEFDF9;
+    /* background-color: red; */
+    padding: 50px 0 50px 50px;
+}
+
+#yielderImage{
+    width: 500px;
+    height: 500px;
+}
+
+.imageHolder{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    width: 50%;
+}
+
+.textHolder{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.textHolder h1{
+    font-size: 85px;
+}
+
+.textHolder p{
+    font-size: 18px;
+    text-align: justify;
+}
+
+.redirect_button{
+    width: 70%;
+    height: 60px;
+    border-radius: 32px;
+    background-color: #FDC409;
+    margin-top: 40px;
+}
+
+.redirect_button a{
+    color: #111111;
+    font-size: 34px
+}
+
 
 /* ============================================== */
 

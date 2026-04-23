@@ -137,6 +137,35 @@ header a:hover {
     margin-left: 85px;
 }
 
+.variable img{
+    margin-right: 40px;
+}
+
+.wallet_manage{
+    flex-direction: column;
+    margin-top: 550px;
+    align-items: center;
+}
+
+.wallet_manage h1{
+    font-size: 70px;
+    text-align: center;
+}
+
+.wallet_manage p{
+    font-size: 32px;
+    margin-right: 40px;
+    text-align: justify;
+}
+
+.wallet_manage .redirect_button{
+    margin-left: 15%;
+}
+
+.wallet_manage img{
+    margin-left: 65px;
+}
+
 
 
 /* ============================================== */

@@ -166,6 +166,52 @@ header a:hover {
     margin-left: 65px;
 }
 
+.footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+
+    background-color: #111111;
+    color: #FFFFFF;
+
+    width: 100%;
+    height: 350px;
+    margin-top: 60px;
+}
+
+.footer a{
+    color: #FFFFFF;
+}
+
+.footer__content{
+    display: flex;
+    gap: 15%;
+    margin-top: 3%;
+    margin-right: 15%;
+
+}
+
+.footer__card{
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__identifier h1{
+    font-size: 65px;
+}
+
+.footer__identifier p{
+    font-size: 22px;
+}
+
+.footer__navigation a{
+    width: 100%;
+    padding: 0 50px;
+    font-size: 18px;
+
+}
 
 
 /* ============================================== */

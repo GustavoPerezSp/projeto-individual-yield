@@ -139,7 +139,8 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-
+          document.getElementById('login__messages').style.display = "block";
+          document.getElementById('error_message').innerHTML = "Cadastro Realizado com Sucesso! Redirecionando para Login...";
 
           setTimeout(() => {
             window.location = "login.html";

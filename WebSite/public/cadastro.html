@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastre sua Conta na YieldWay!</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="./js/sessao.js"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+
+</head>
+
+<body>
+
+  <div class="register__content">
+
+    <div class="login__card login__logo">
+      <div class="login__logo__background">
+        <img src="assets/images/moeda inclinada.png" alt="Moeda com texto YW">
+      </div>
+    </div>
+
+    <div class="login__card">
+      <div id="login__greetings">
+        <h1>Bem vindo Yielder!</h1>
+        <p class="login__text">Cadastre sua conta para gerenciar seus investimentos!</p>
+      </div>
+
+      <div class="login__form">
+
+        <div class="form_field">
+          <label for="iName">Nome Completo</label>
+          <input class="login__form__input" type="text" name="" id="iName">
+        </div>
+
+        <div class="form_field">
+          <label for="iUsername">Nome de Usuário</label>
+          <input class="login__form__input" type="text" name="" id="iUsername">
+        </div>
+
+        <div class="form_field">
+          <label for="iBirthdate">Data de Nascimento</label>
+          <input class="login__form__input" type="date" name="" id="iBirthdate">
+        </div>
+
+        <div class="form_field">
+          <label for="iEmail">Email</label>
+          <input class="login__form__input" type="text" name="" id="iEmail">
+        </div>
+
+        <div class="form_field">
+          <label for="iPassword">Senha</label>
+          <input class="login__form__input" type="password" name="" id="iPassword">
+        </div>
+
+        <div class="form_field">
+          <label for="iConfirmPassword">Confirme sua Senha</label>
+          <input class="login__form__input" type="password" name="" id="iConfirmPassword">
+        </div>
+
+
+        <a id="login__form__button" href="#" onclick="cadastrar()">Cadastrar</a>
+      </div>
+
+      <p class="login__form__createacc">Já tem uma Conta? <a href="login.html">Faça Login!</a></p>
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
+
+<script>
+
+  // Array para armazenar empresas cadastradas para validação de código de ativação 
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = iName.value;
+    var nomeUsuarioVar = iUsername.value;
+    var dataNascimentoVar = iBirthdate.value;
+    var emailVar = iEmail.value;
+    var senhaVar = iPassword.value;
+    var confirmacaoSenhaVar = iConfirmPassword.value;
+
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      nomeUsuarioVar == "" ||
+      dataNascimentoVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        nomeUsuarioServer: nomeUsuarioVar,
+        dataNascimentoServer: dataNascimentoVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "12000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    console.log(`Cadastrado, redirecionando...`)
+  }
+
+  function limparFormulario() {
+
+    document.getElementById("iName").value = ``;
+    document.getElementById("iUsername").value = ``;
+    document.getElementById("iBirthdate").value = ``;
+    document.getElementById("iEmail").value = ``;
+    document.getElementById("iPassword").value = ``;
+    document.getElementById("iConfirmPassword").value = ``;
+
+  }
+</script>

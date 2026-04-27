@@ -51,14 +51,16 @@
 
         <div class="form_field" id="form_field_email">
           <label for="iEmail">Email</label>
-          <input class="login__form__input" type="text" name="" id="iEmail" oninput="emailValidator()">
+          <input class="login__form__input" type="text" name="" id="iEmail"
+            oninput="emailValidator(); confirmValidations()">
           <p style="color: red; font-size: 18px; display: none;" id="emailChecker">
             Email deve conter '@' E '.com OU .school'</p>
         </div>
 
         <div class="form_field" id="form_field_password">
           <label for="iPassword">Senha</label>
-          <input class="login__form__input" type="password" name="" id="iPassword" oninput="passwordValidator()">
+          <input class="login__form__input" type="password" name="" id="iPassword"
+            oninput="passwordValidator(); confirmPassword(); confirmValidations()">
           <div style="color: red; font-size: 18px; display: none;" id="passwordChecker">
             Senha deve conter: Ao menos 8 caracteres ; 1 Letra Maiúscula ; 1 Letra Minúscula ; 1 Número ; 1 Caractere
             Especial (! @ # $)
@@ -67,12 +69,13 @@
 
         <div class="form_field">
           <label for="iConfirmPassword">Confirme sua Senha</label>
-          <input class="login__form__input" type="password" name="" id="iConfirmPassword" oninput="confirmPassword()">
+          <input class="login__form__input" type="password" name="" id="iConfirmPassword"
+            oninput="confirmPassword(); confirmValidations()">
           <p style="color: red; font-size: 18px; display: none;" id="passwordConfirmChecker">
             As senhas não se coincidem!</p>
         </div>
 
-        <a id="login__form__button" href="#" onclick="cadastrar()">Cadastrar</a>
+        <a id="register__form__button" href="#" onclick="cadastrar()">Cadastrar</a>
       </div>
 
       <div>
@@ -102,10 +105,10 @@
 
     if (!email.includes('@') || (!email.includes('.com') && !email.includes('.school'))) {
       emailChecker.style.display = "block";
+      isEmailValid = false;
     } else {
       emailChecker.style.display = "none";
       isEmailValid = true;
-      console.log(`Status email avlido: ${isEmailValid}`)
     }
   }
 
@@ -153,11 +156,11 @@
     if (!passwordHasSpecialChars || !passwordHasNumbers || !passwordHasUpperLetter || !passwordHasLowerLetter) {
       passwordChecker.style.display = "block";
       form_field_password.style.marginBottom = "10px";
+      isPasswordValid = false;
     } else {
       passwordChecker.style.display = "none";
       form_field_password.style.marginBottom = "0px";
       isPasswordValid = true;
-      console.log(`Status senha avlido: ${isPasswordValid}`)
     }
 
   }
@@ -168,19 +171,23 @@
 
     if (password != confirmPassword) {
       passwordConfirmChecker.style.display = "block"
+      isPasswordConfirmed = false;
     } else {
       passwordConfirmChecker.style.display = "none"
       isPasswordConfirmed = true;
-
-      if(isEmailValid && isPasswordValid && isPasswordConfirmed){
-        login__form__button.style.pointerEvents = "all";
-        login__form__button.style.backgroundColor = "#FDC409";
-
-      }
-
     }
   }
 
+  function confirmValidations() {
+    if (isEmailValid && isPasswordValid && isPasswordConfirmed) {
+      register__form__button.style.pointerEvents = "all";
+      register__form__button.style.backgroundColor = "#FDC409";
+    }else{
+      register__form__button.style.pointerEvents = "none";
+      register__form__button.style.backgroundColor = "#e2ca7b";
+    }
+
+  }
 
   function cadastrar() {
     // aguardar();

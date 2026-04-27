@@ -304,9 +304,10 @@ header a:hover {
 }
 
 #login__form__button {
+    pointer-events: none;
     display: flex;
     justify-content: center;
-    background-color: #FDC409;
+    background-color: #e2ca7b;
     color: #FFFFFF;
     padding: 1%;
     width: 30%;

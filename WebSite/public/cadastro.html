@@ -67,9 +67,10 @@
 
         <div class="form_field">
           <label for="iConfirmPassword">Confirme sua Senha</label>
-          <input class="login__form__input" type="password" name="" id="iConfirmPassword">
+          <input class="login__form__input" type="password" name="" id="iConfirmPassword" oninput="confirmPassword()">
+          <p style="color: red; font-size: 18px; display: none;" id="passwordConfirmChecker">
+            As senhas não se coincidem!</p>
         </div>
-
 
         <a id="login__form__button" href="#" onclick="cadastrar()">Cadastrar</a>
       </div>
@@ -91,6 +92,11 @@
 </html>
 
 <script>
+
+  let isEmailValid = false;
+  let isPasswordValid = false;
+  let isPasswordConfirmed = false;
+
   function emailValidator() {
     let email = iEmail.value;
 
@@ -98,18 +104,21 @@
       emailChecker.style.display = "block";
     } else {
       emailChecker.style.display = "none";
+      isEmailValid = true;
+      console.log(`Status email avlido: ${isEmailValid}`)
     }
   }
 
+  let specialChars = ['@', '!', '#', '$']
+  let numericChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  let passwordHasSpecialChars = false;
+  let passwordHasNumbers = false;
+  let passwordHasUpperLetter = false;
+  let passwordHasLowerLetter = false;
+  let passwordHasAtLeast8Chars = false;
   function passwordValidator() {
     let password = iPassword.value;
-    let specialChars = ['@', '!', '#', '$']
-    let numericChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    let passwordHasSpecialChars = false;
-    let passwordHasNumbers = false;
-    let passwordHasUpperLetter = false;
-    let passwordHasLowerLetter = false;
-    let passwordHasAtLeast8Chars = false;
+
 
     for (let i = 0; i < password.length; i++) {
       for (let j = 0; j < specialChars.length; j++) {
@@ -129,15 +138,15 @@
       }
     }
 
-    if(password != password.toLowerCase()){
+    if (password != password.toLowerCase()) {
       passwordHasUpperLetter = true;
     }
 
-    if(password != password.toUpperCase()){
+    if (password != password.toUpperCase()) {
       passwordHasLowerLetter = true;
     }
 
-    if(password.length >= 8){
+    if (password.length >= 8) {
       passwordHasAtLeast8Chars = true;
     }
 
@@ -147,13 +156,30 @@
     } else {
       passwordChecker.style.display = "none";
       form_field_password.style.marginBottom = "0px";
+      isPasswordValid = true;
+      console.log(`Status senha avlido: ${isPasswordValid}`)
     }
 
   }
 
-</script>
+  function confirmPassword() {
+    let confirmPassword = iConfirmPassword.value;
+    let password = iPassword.value;
 
-<script>
+    if (password != confirmPassword) {
+      passwordConfirmChecker.style.display = "block"
+    } else {
+      passwordConfirmChecker.style.display = "none"
+      isPasswordConfirmed = true;
+
+      if(isEmailValid && isPasswordValid && isPasswordConfirmed){
+        login__form__button.style.pointerEvents = "all";
+        login__form__button.style.backgroundColor = "#FDC409";
+
+      }
+
+    }
+  }
 
 
   function cadastrar() {
@@ -202,7 +228,8 @@
         dataNascimentoServer: dataNascimentoVar,
         emailServer: emailVar,
         senhaServer: senhaVar
-      }),
+      })
+      ,
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);

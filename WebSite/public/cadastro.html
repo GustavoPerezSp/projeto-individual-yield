@@ -51,14 +51,18 @@
 
         <div class="form_field" id="form_field_email">
           <label for="iEmail">Email</label>
-          <input class="login__form__input" type="text" name="" id="iEmail" oninput="validarEmail()">
+          <input class="login__form__input" type="text" name="" id="iEmail" oninput="emailValidator()">
           <p style="color: red; font-size: 18px; display: none;" id="emailChecker">
             Email deve conter '@' E '.com OU .school'</p>
         </div>
 
-        <div class="form_field">
+        <div class="form_field" id="form_field_password">
           <label for="iPassword">Senha</label>
-          <input class="login__form__input" type="password" name="" id="iPassword">
+          <input class="login__form__input" type="password" name="" id="iPassword" oninput="passwordValidator()">
+          <div style="color: red; font-size: 18px; display: none;" id="passwordChecker">
+            Senha deve conter: Ao menos 8 caracteres ; 1 Letra Maiúscula ; 1 Letra Minúscula ; 1 Número ; 1 Caractere
+            Especial (! @ # $)
+          </div>
         </div>
 
         <div class="form_field">
@@ -87,20 +91,70 @@
 </html>
 
 <script>
-  function validarEmail() {
+  function emailValidator() {
     let email = iEmail.value;
 
     if (!email.includes('@') || (!email.includes('.com') && !email.includes('.school'))) {
       emailChecker.style.display = "block";
-    }else{
+    } else {
       emailChecker.style.display = "none";
     }
   }
+
+  function passwordValidator() {
+    let password = iPassword.value;
+    let specialChars = ['@', '!', '#', '$']
+    let numericChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    let passwordHasSpecialChars = false;
+    let passwordHasNumbers = false;
+    let passwordHasUpperLetter = false;
+    let passwordHasLowerLetter = false;
+    let passwordHasAtLeast8Chars = false;
+
+    for (let i = 0; i < password.length; i++) {
+      for (let j = 0; j < specialChars.length; j++) {
+        if (password[i] == specialChars[j]) {
+          passwordHasSpecialChars = true;
+          break;
+        }
+      }
+    }
+
+    for (let i = 0; i < password.length; i++) {
+      for (let j = 0; j < numericChars.length; j++) {
+        if (password[i] == numericChars[j]) {
+          passwordHasNumbers = true;
+          break;
+        }
+      }
+    }
+
+    if(password != password.toLowerCase()){
+      passwordHasUpperLetter = true;
+    }
+
+    if(password != password.toUpperCase()){
+      passwordHasLowerLetter = true;
+    }
+
+    if(password.length >= 8){
+      passwordHasAtLeast8Chars = true;
+    }
+
+    if (!passwordHasSpecialChars || !passwordHasNumbers || !passwordHasUpperLetter || !passwordHasLowerLetter) {
+      passwordChecker.style.display = "block";
+      form_field_password.style.marginBottom = "10px";
+    } else {
+      passwordChecker.style.display = "none";
+      form_field_password.style.marginBottom = "0px";
+    }
+
+  }
+
 </script>
 
 <script>
 
-  // Array para armazenar empresas cadastradas para validação de código de ativação 
 
   function cadastrar() {
     // aguardar();

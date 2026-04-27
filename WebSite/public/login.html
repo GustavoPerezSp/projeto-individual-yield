@@ -16,6 +16,11 @@
     <div class="login__content">
 
         <div class="login__card login__logo">
+
+            <div class="login__messages" id="login__messages">
+                <span class="error_message" id="error_message"></span>
+            </div>
+
             <div class="login__logo__background">
                 <img src="assets/images/moeda inclinada.png" alt="Moeda com texto YW">
             </div>
@@ -59,8 +64,8 @@
         var senhaVar = iPassword.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            login__messages.style.display = "block"
+            error_message.innerHTML = "Por favor, preencha os campos em branco!";
             finalizarAguardar();
             return false;
         }
@@ -93,6 +98,9 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
 
+                    document.getElementById('login__messages').style.display = "block";
+                    document.getElementById('error_message').innerHTML = "Login Realizado com Sucesso!<br> Redirecionando para Home...";
+
                     setTimeout(function () {
                         window.location = "index.html";
                     }, 1000); // apenas para exibir o loading
@@ -100,6 +108,9 @@
                 });
 
             } else {
+                document.getElementById('login__messages').style.display = "block";
+                document.getElementById('error_message').innerHTML = "Email e/ou Senha Inválidos!";
+                setInterval(sumirMensagem, 5000)
 
                 console.log("Houve um erro ao tentar realizar o login!");
 
@@ -117,7 +128,7 @@
     }
 
     function sumirMensagem() {
-        console.log(`sem erro paizao`)
+        login__messages.style.display = "none"
     }
 
 </script>

@@ -264,6 +264,7 @@ header a:hover {
 }
 
 .error_message{
+    text-align: center;
     font-size: 22px;
 }
 

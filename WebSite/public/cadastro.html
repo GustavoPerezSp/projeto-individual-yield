@@ -49,9 +49,11 @@
           <input class="login__form__input" type="date" name="" id="iBirthdate">
         </div>
 
-        <div class="form_field">
+        <div class="form_field" id="form_field_email">
           <label for="iEmail">Email</label>
-          <input class="login__form__input" type="text" name="" id="iEmail">
+          <input class="login__form__input" type="text" name="" id="iEmail" oninput="validarEmail()">
+          <p style="color: red; font-size: 18px; display: none;" id="emailChecker">
+            Email deve conter '@' E '.com OU .school'</p>
         </div>
 
         <div class="form_field">
@@ -78,9 +80,23 @@
 
   </div>
 
+
+
 </body>
 
 </html>
+
+<script>
+  function validarEmail() {
+    let email = iEmail.value;
+
+    if (!email.includes('@') || (!email.includes('.com') && !email.includes('.school'))) {
+      emailChecker.style.display = "block";
+    }else{
+      emailChecker.style.display = "none";
+    }
+  }
+</script>
 
 <script>
 
@@ -110,14 +126,14 @@
     ) {
       document.getElementById('login__messages').style.display = "block";
       document.getElementById('error_message').innerHTML = "(Mensagem de erro para campos em branco)";
-      
+
       finalizarAguardar();
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
     }
-    
-    
+
+
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -134,19 +150,19 @@
         senhaServer: senhaVar
       }),
     })
-    .then(function (resposta) {
-      console.log("resposta: ", resposta);
-      
-      if (resposta.ok) {
-        document.getElementById('login__messages').style.display = "block";
-        document.getElementById('error_message').innerHTML = "Cadastro Realizado com Sucesso! Redirecionando para Login...";
-        limparFormulario();
-        
-        setTimeout(() => {
-          window.location = "login.html";
-        }, "3000");
-          
-        finalizarAguardar();
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          document.getElementById('login__messages').style.display = "block";
+          document.getElementById('error_message').innerHTML = "Cadastro Realizado com Sucesso! Redirecionando para Login...";
+          limparFormulario();
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "3000");
+
+          finalizarAguardar();
         } else {
           document.getElementById('login__messages').style.display = "block";
           document.getElementById('error_message').innerHTML = `Já Existe um Cadastro com Esse<br> Email ou Usuário!`;
@@ -157,22 +173,22 @@
         console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
       });
-      
-      return false;
-    }
-    
-    function sumirMensagem() {
-      document.getElementById('login__messages').style.display = "none";
-    }
-    
-    function limparFormulario() {
-      
-      document.getElementById("iName").value = ``;
-      document.getElementById("iUsername").value = ``;
-      document.getElementById("iBirthdate").value = ``;
-      document.getElementById("iEmail").value = ``;
-      document.getElementById("iPassword").value = ``;
-      document.getElementById("iConfirmPassword").value = ``;
-      
-    }
-    </script>
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    document.getElementById('login__messages').style.display = "none";
+  }
+
+  function limparFormulario() {
+
+    document.getElementById("iName").value = ``;
+    document.getElementById("iUsername").value = ``;
+    document.getElementById("iBirthdate").value = ``;
+    document.getElementById("iEmail").value = ``;
+    document.getElementById("iPassword").value = ``;
+    document.getElementById("iConfirmPassword").value = ``;
+
+  }
+</script>

@@ -40,10 +40,10 @@
             </div>
 
             <div class="kpis_graphs__graphs">
-                <div>
+                <div class="barChart">
                     <canvas id="barGraph"></canvas>
                 </div>
-                <div>
+                <div class="pieChart">
                     <canvas id="pieGraph"></canvas>
                 </div>
             </div>
@@ -65,11 +65,16 @@
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Maio', 'Jun'],
             datasets: [{
-                label: '# of Votes',
+                label: 'Yield Com o Passar do Tempo',
                 data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
+                borderWidth: 1,
+                backgroundColor: [
+                    '#FDC409',
+                    '#111111',
+                    '#E09B2D'
+                ]
             }]
         },
         options: {
@@ -87,13 +92,13 @@
         type: 'pie',
         data: {
             labels: [
-                'Red',
-                'Blue',
-                'Yellow'
+                'Renda Fixa',
+                'Ações',
+                'FIIs'
             ],
             datasets: [{
                 label: 'My First Dataset',
-                data: [300, 50, 100],
+                data: [300, 750, 700],
                 backgroundColor: [
                     'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)',

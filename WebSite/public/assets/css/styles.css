@@ -5,7 +5,6 @@
     padding: 0;
     text-decoration: none;
     font-family: "Righteous", sans-serif;
-    ;
 }
 
 a {
@@ -16,7 +15,7 @@ a {
     width: 100%;
 }
 
-header {
+.header {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -27,11 +26,11 @@ header {
     font-size: 16px;
 }
 
-header .logo {
+.header .logo {
     font-size: 40px;
 }
 
-header a:hover {
+.header a:hover {
     color: #FDC409;
 }
 

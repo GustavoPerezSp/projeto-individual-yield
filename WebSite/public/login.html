@@ -99,10 +99,10 @@
                     sessionStorage.ID_USUARIO = json.id;
 
                     document.getElementById('login__messages').style.display = "block";
-                    document.getElementById('error_message').innerHTML = "Login Realizado com Sucesso!<br> Redirecionando para Home...";
+                    document.getElementById('error_message').innerHTML = "Login Realizado com Sucesso!<br> Redirecionando para Dashboard...";
 
                     setTimeout(function () {
-                        window.location = "index.html";
+                        window.location = "/dashboard/dashboard.html";
                     }, 1000); // apenas para exibir o loading
 
                 });

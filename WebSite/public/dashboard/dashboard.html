@@ -1,11 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>yielDash</title>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-    
+
+    <div id="content">
+
+        <div class="header">
+
+            <div class="logo">
+                <a href="">YieldWay</a>
+            </div>
+
+            <div class="links">
+                <a href="../index.html">Voltar para Home</a>
+                <a href="">Meu Perfil</a>
+                <a href="">Gerenciador</a>
+            </div>
+
+            <div class="account">
+                <p>Olá, <span id="sUsername"></span>!</p>
+            </div>
+
+        </div class="header">
+
+        <div class="kpis_graphs">
+            <div class="kpis_graphs__kpis">
+                <div class="kpis_graphs__kpi">aaaaa</div>
+                <div class="kpis_graphs__kpi">aaaaa</div>
+                <div class="kpis_graphs__kpi">aaaaa</div>
+                <div class="kpis_graphs__kpi">aaaaa</div>
+            </div>
+
+            <div class="kpis_graphs__graphs">
+                <div>
+                    <canvas id="barGraph"></canvas>
+                </div>
+                <div>
+                    <canvas id="pieGraph"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </body>
+
 </html>
+
+<script>
+    sUsername.innerHTML += sessionStorage.NOME_USUARIO
+</script>
+
+<script>
+    const ctx = document.getElementById('barGraph');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const ctz = document.getElementById('pieGraph');
+
+    new Chart(ctz, {
+        type: 'pie',
+        data: {
+            labels: [
+                'Red',
+                'Blue',
+                'Yellow'
+            ],
+            datasets: [{
+                label: 'My First Dataset',
+                data: [300, 50, 100],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)'
+                ],
+                hoverOffset: 4
+            }]
+        },
+    });
+</script>

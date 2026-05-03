@@ -57,9 +57,20 @@ a {
 }
 
 .kpis_graphs__kpi {
-    width: 22%;
+    width: 20%;
+    padding: 1%;
     height: 80px;
     background-color: #111111;
+    color: #FFFFFF;
+}
+
+.kpis_graphs__kpi h6{
+    font-size: 28px;
+}
+
+.kpis_graphs__kpi p{
+    margin-top: 5px;
+    font-size: 22px;
 }
 
 .kpis_graphs__graphs {

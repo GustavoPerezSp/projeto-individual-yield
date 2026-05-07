@@ -26,13 +26,13 @@
             </div>
 
             <div class="account">
-                <button onclick="alert(`asada`)">Adicionar Novo Lançamento</button>
+                <button onclick="makeNewInvestment()">Adicionar Novo Lançamento</button>
                 <p>Olá, <span id="sUsername"></span>!</p>
             </div>
 
         </div class="header">
 
-        <div class="new_investment">
+        <div class="new_investment" id="new_investment">
             <div class="new__inputs">
                 <div class="column">
                     <div class="column__input">
@@ -73,13 +73,14 @@
             </div>
 
             <div class="new__buttons">
-                <button>Cancelar</button>
+                <button onclick="closeNewInvestment()">Cancelar</button>
                 <button id="confirmButton" onclick="alert(`lancado`)">Fazer Lançamento</button>
             </div>
 
         </div>
 
-        <div class="kpis_graphs">
+        <div class="kpis_graphs" id="kpis_graphs">
+            <div class="filter" id="filter"> </div>
             <div class="kpis_graphs__kpis">
 
                 <div class="kpis_graphs__kpi">
@@ -122,6 +123,16 @@
 <script>
     sUsername.innerHTML += sessionStorage.NOME_USUARIO
 
+    function makeNewInvestment(){
+        document.getElementById('filter').style.display = "block";
+        document.getElementById('new_investment').style.display = "flex";
+    }
+    
+    function closeNewInvestment(){
+        document.getElementById('filter').style.display = "none";
+        document.getElementById('new_investment').style.display = "none";
+    }
+    
     function pricing(){
         let price = Number(iPrice.value);
         let quantity = Number(iQuantity.value);
@@ -130,6 +141,8 @@
 
         totalPrice.innerHTML = finalPrice.toFixed(2)
     }
+
+
 </script>
 
 <script>

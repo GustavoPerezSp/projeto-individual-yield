@@ -7,6 +7,10 @@
     <title>yielDash</title>
     <link rel="stylesheet" href="../assets/css/dashboard.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/sessao.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+
 </head>
 
 <body>
@@ -39,8 +43,8 @@
                         <label for="sStockType">Tipo de Ativo</label>
                         <select id="sStockType">
                             <option value="acao">Ação</option>
-                            <option value="fundo">FIIs</option>
-                            <option value="rendaFixa">Renda Fixa</option>
+                            <option value="FIIs">FIIs</option>
+                            <option value="Renda Fixa">Renda Fixa</option>
                         </select>
 
                         <div class="column__input">
@@ -74,7 +78,7 @@
 
             <div class="new__buttons">
                 <button onclick="closeNewInvestment()">Cancelar</button>
-                <button id="confirmButton" onclick="alert(`lancado`)">Fazer Lançamento</button>
+                <button id="confirmButton" onclick="cadastrar()">Fazer Lançamento</button>
             </div>
 
         </div>
@@ -123,17 +127,17 @@
 <script>
     sUsername.innerHTML += sessionStorage.NOME_USUARIO
 
-    function makeNewInvestment(){
+    function makeNewInvestment() {
         document.getElementById('filter').style.display = "block";
         document.getElementById('new_investment').style.display = "flex";
     }
-    
-    function closeNewInvestment(){
+
+    function closeNewInvestment() {
         document.getElementById('filter').style.display = "none";
         document.getElementById('new_investment').style.display = "none";
     }
-    
-    function pricing(){
+
+    function pricing() {
         let price = Number(iPrice.value);
         let quantity = Number(iQuantity.value);
 
@@ -194,4 +198,89 @@
             }]
         },
     });
+</script>
+
+<script>
+    function cadastrar() {
+        // aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var stockTypeVar = sStockType.value;
+        var purchaseDateVar = iPurchaseDate.value;
+        var priceVar = iPrice.value;
+        var tickerVar = iTicker.value;
+        var quantityVar = iQuantity.value;
+
+
+        // Verificando se há algum campo em branco
+        if (
+            stockTypeVar == "" ||
+            purchaseDateVar == "" ||
+            priceVar == "" ||
+            tickerVar == "" ||
+            quantityVar == ""
+        ) {
+            //   document.getElementById('login__messages').style.display = "block";
+            //   document.getElementById('error_message').innerHTML = "Por favor, preencha os campos em branco!";
+
+            //   finalizarAguardar();
+
+            alert('Campo em Branco')
+            return false;
+        } else {
+            setInterval(sumirMensagem, 5000);
+        }
+
+
+        // Enviando o valor da nova input
+        fetch("/acao/lancamento", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/acao.js
+                stockTypeServer: stockTypeVar,
+                purchaseDateServer: purchaseDateVar,
+                priceServer: priceVar,
+                tickerServer: tickerVar,
+                quantityServer: quantityVar
+            })
+            ,
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    //   document.getElementById('login__messages').style.display = "block";
+                    //   document.getElementById('error_message').innerHTML = "Cadastro Realizado com Sucesso!<br> Redirecionando para Login...";
+                    //   limparFormulario();
+
+                    alert('Lancou')
+
+                    //   setTimeout(() => {
+                    //     window.location = "login.html";
+                    //   }, "3000");
+
+                    //   finalizarAguardar();
+                } else {
+                    //   document.getElementById('login__messages').style.display = "block";
+                    //   document.getElementById('error_message').innerHTML = `Já Existe um Cadastro com Esse<br> Email ou Usuário!`;
+                    alert('Erro ao Lancar')
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                // finalizarAguardar();
+            });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        // document.getElementById('login__messages').style.display = "none";
+    }
 </script>

@@ -26,10 +26,58 @@
             </div>
 
             <div class="account">
+                <button onclick="alert(`asada`)">Adicionar Novo Lançamento</button>
                 <p>Olá, <span id="sUsername"></span>!</p>
             </div>
 
         </div class="header">
+
+        <div class="new_investment">
+            <div class="new__inputs">
+                <div class="column">
+                    <div class="column__input">
+                        <label for="sStockType">Tipo de Ativo</label>
+                        <select id="sStockType">
+                            <option value="acao">Ação</option>
+                            <option value="fundo">FIIs</option>
+                            <option value="rendaFixa">Renda Fixa</option>
+                        </select>
+
+                        <div class="column__input">
+                            <label for="iPurchaseDate">Data da Compra</label>
+                            <input type="date" id="iPurchaseDate">
+                        </div>
+
+                        <div class="column__input">
+                            <label for="iPrice">Preço em R$</label>
+                            <input type="number" id="iPrice" oninput="pricing()">
+                        </div>
+
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="column__input">
+                        <label for="iTicker">Ticker Do Ativo</label>
+                        <input type="text" id="iTicker">
+                    </div>
+
+                    <div class="column__input">
+                        <label for="iQuantity">Quantidade</label>
+                        <input type="number" id="iQuantity" oninput="pricing()">
+                    </div>
+                </div>
+            </div>
+
+            <div class="new__total">
+                <h2>Total: R$ <span id="totalPrice"></span></h2>
+            </div>
+
+            <div class="new__buttons">
+                <button>Cancelar</button>
+                <button id="confirmButton" onclick="alert(`lancado`)">Fazer Lançamento</button>
+            </div>
+
+        </div>
 
         <div class="kpis_graphs">
             <div class="kpis_graphs__kpis">
@@ -73,6 +121,15 @@
 
 <script>
     sUsername.innerHTML += sessionStorage.NOME_USUARIO
+
+    function pricing(){
+        let price = Number(iPrice.value);
+        let quantity = Number(iQuantity.value);
+
+        let finalPrice = price * quantity;
+
+        totalPrice.innerHTML = finalPrice.toFixed(2)
+    }
 </script>
 
 <script>

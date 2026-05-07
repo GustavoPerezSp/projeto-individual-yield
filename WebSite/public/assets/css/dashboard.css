@@ -42,6 +42,104 @@ a {
     color: #FDC409;
 }
 
+.account {
+    display: flex;
+    gap: 15%;
+}
+
+.account button {
+    background-color: #FDC409;
+    color: #FFFFFF;
+    font-weight: bolder;
+}
+
+.new_investment {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20%;
+
+    width: 60%;
+    height: 500px;
+    margin: 1% 20%;
+
+    background-color: #8f8f8f;
+    color: #111111;
+    position: absolute;
+    border: 1px solid #FDC409;
+}
+
+.new__inputs {
+    display: flex;
+    justify-content: center;
+    gap: 15%;
+
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+    height: 20px;
+}
+
+.column__input {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+}
+
+.column__input label{
+    font-size: 22px;
+}
+
+.column__input input, select{
+    height: 35px;
+}
+
+.new__total{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    width: 80%;
+    height: 50px;
+    background-color: #111111;
+    color: #FFFFFF;
+    border-radius: 32px;
+    margin: 0 auto;
+    margin-top: 95px;
+}
+
+.new__buttons{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 10%;
+}
+
+
+.new__buttons button{
+
+    border: none;
+    width: 25%;
+    height: 55px;
+    border-radius: 16px;
+    font-size: larger;
+
+
+}
+
+.new__buttons button{
+    cursor: pointer;
+}
+
+#confirmButton{
+    background-color: #FDC409;
+    color: #FFFFFF;
+    font-weight: bolder;
+}
+
 .kpis_graphs {
     width: 100%;
     margin-top: 10px;
@@ -64,20 +162,20 @@ a {
     color: #FFFFFF;
 }
 
-.kpis_graphs__kpi h6{
-    font-size: 28px;
+.kpis_graphs__kpi h6 {
+    font-size: 27px;
 }
 
-.kpis_graphs__kpi p{
+.kpis_graphs__kpi p {
     margin-top: 5px;
     font-size: 22px;
 }
 
 .kpis_graphs__graphs {
-    width: 100%;
+    width: 92%;
     display: flex;
     flex-direction: row;
-    margin: 0 50px;
+    margin: 0 8%;
     gap: 55px;
 }
 

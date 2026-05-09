@@ -8,11 +8,27 @@ function lancamento(stockType, purchaseDate, price, ticker, quantity) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO acao (ticker, tipo, preco) VALUES
+        INSERT INTO lancamento (ticker, tipo, preco) VALUES
          ('${ticker}', '${stockType}', '${price}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+
+    return database.executar(instrucaoSql).then(resultado => {
+
+        let idLancamento = resultado.insertId;
+
+        var instrucaoSql2 = `
+        INSERT INTO carteiralancamento (fkCarteira, fkLancamento, quantidade, dataDeCompra) VALUES
+        (1, '${idLancamento}', '${quantity}', '${purchaseDate}');
+        `;
+        
+        console.log("Executando a instrução SQL: \n" + instrucaoSql2);
+        database.executar(instrucaoSql2);
+    })
+
+
+
+
 }
 
 module.exports = {

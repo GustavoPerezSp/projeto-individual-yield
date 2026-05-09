@@ -183,6 +183,11 @@ a {
     font-size: 27px;
 }
 
+#titleAvgInvestment{
+    font-size: 25px;
+}
+
+
 .kpis_graphs__kpi p {
     margin-top: 5px;
     font-size: 22px;

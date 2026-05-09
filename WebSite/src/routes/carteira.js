@@ -9,4 +9,8 @@ router.post("/buscarCarteira", function (req, res) {
     carteiraController.buscarCarteira(req, res);
 })
 
+router.post("/cadastrar", function (req, res) {
+    carteiraController.cadastrar(req, res);
+})
+
 module.exports = router;

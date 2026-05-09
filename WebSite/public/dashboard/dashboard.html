@@ -36,6 +36,26 @@
 
         </div class="header">
 
+        <div id="noWalletWarning" class="noWalletWarning">
+            <div class="noWalletWarning__content">
+                <h2>Parece que você ainda não tem uma carteira!</h2>
+                <p>Para começar a gerenciar seus investimentos, precisamos criar uma carteira para você.</p>
+
+                <div class="noWalletWarning__create">
+
+                    <div class="noWalletWarning__create__column">
+                        <label for="iWalletName">Dê um Nome para Sua Carteira!</label>
+                        <input type="text" id="iWalletName">
+                    </div>
+
+                </div>
+
+                <button onclick="createWallet()" class="noWalletWarning__button">Criar Minha Carteira</button>
+
+                <p id="noWalletWarning__message">Carteira Criada com Sucesso!</p>
+            </div>
+        </div>
+
         <div class="new_investment" id="new_investment">
             <div class="new__inputs">
                 <div class="column">
@@ -127,6 +147,7 @@
 <script>
 
     var idYielderVar = sessionStorage.ID_USUARIO;
+    var nomeYielderVar = sessionStorage.NOME_USUARIO;
 
     fetch("/carteira/buscarCarteira", {
         method: "POST",
@@ -134,7 +155,8 @@
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            idYielderServer: idYielderVar 
+            idYielderServer: idYielderVar,
+            nomeYielderServer: nomeYielderVar
         })
     }).then(function (resposta) {
         if (resposta.ok) {
@@ -143,11 +165,74 @@
                 sessionStorage.ID_CARTEIRA = json.idCarteira;
             });
         } else {
-            console.log("Usuário não tem carteira ou erro na busca.");
+            exibirModalCarteira();
         }
     }).catch(erro => console.log(erro));
 
+    function exibirModalCarteira() {
+        document.getElementById('filter').style.display = "block";
+        document.getElementById("noWalletWarning").style.display = "flex";
+    }
 
+    function createWallet() {
+        // aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeCarteiraVar = iWalletName.value;
+
+        // Verificando se há algum campo em branco
+        if (
+            nomeCarteiraVar == ""
+        ) {
+            console.log('Por favor, de um nome para a sua carteira')
+
+            finalizarAguardar();
+            return false;
+        } else {
+            console.log('Carteira Nomeada')
+        }
+
+
+        // Enviando o valor da nova input
+        fetch("/carteira/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeCarteiraServer: nomeCarteiraVar,
+                idYielderServer: idYielderVar
+            })
+            ,
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    
+                    document.getElementById('noWalletWarning__message').style.display = "block";
+
+
+                    setTimeout(() => {
+                        window.location = "/dashboard/dashboard.html";
+                    }, "1400");
+
+                    finalizarAguardar();
+                } else {
+                    alert('Erro ao criar carteira!')
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                finalizarAguardar();
+            });
+
+        return false;
+    }
 
 </script>
 

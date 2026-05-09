@@ -63,8 +63,8 @@ a {
     height: 500px;
     margin: 1% 20%;
 
-    background-color: #FFFFFF;
-    color: #111111;
+    background-color: #1e1e1e;
+    color: #FFFFFF;
     position: absolute;
     border: 3px solid #a68310;
     border-radius: 16px;
@@ -209,3 +209,78 @@ a {
     width: 20%;
     margin-top: 110px;
 }
+
+.noWalletWarning {
+    display: none;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    
+    width: 80%;
+    height: 80%;
+    margin: 3% 10%;
+
+    background-color: #1e1e1e;
+    border: 2px solid #FFD700;
+
+    z-index: 99;
+}
+
+.noWalletWarning__content {
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+}
+
+.noWalletWarning__create{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    width: 100%;
+    height: 100px;
+    margin-top: 10%;
+}
+
+.noWalletWarning__create__column{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.noWalletWarning__create__column label{
+    font-size: 32px
+}
+
+.noWalletWarning__create__column input{
+    border-radius: 4px;
+    width: 100%;
+    height: 30px;
+    font-size: 22px
+}
+
+
+.noWalletWarning__button {
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.noWalletWarning__button:hover{
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+#noWalletWarning__message{
+    display: none;
+    color: #33da33;
+}
+
+
+
+

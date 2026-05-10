@@ -2,7 +2,7 @@ var database = require("../database/config")
 
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function lancamento(stockType, purchaseDate, price, ticker, quantity) {
+function lancamento(stockType, purchaseDate, price, ticker, quantity, idCarteira) {
     console.log("ACESSEI O ACAO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", stockType, purchaseDate, price, ticker, quantity);
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
@@ -19,7 +19,7 @@ function lancamento(stockType, purchaseDate, price, ticker, quantity) {
 
         var instrucaoSql2 = `
         INSERT INTO carteiralancamento (fkCarteira, fkLancamento, quantidade, dataDeCompra) VALUES
-        (1, '${idLancamento}', '${quantity}', '${purchaseDate}');
+        ('${idCarteira}', '${idLancamento}', '${quantity}', '${purchaseDate}');
         `;
         
         console.log("Executando a instrução SQL: \n" + instrucaoSql2);

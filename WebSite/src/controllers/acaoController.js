@@ -8,6 +8,8 @@ function lancamento(req, res) {
     var ticker = req.body.tickerServer;
     var quantity = req.body.quantityServer;
 
+    var idCarteira = req.body.idCarteiraServer;
+
     // Faça as validações dos valores
     if (stockType == undefined) {
         res.status(400).send("Seu stockType está undefined!");
@@ -22,7 +24,7 @@ function lancamento(req, res) {
     }else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        acaoModel.lancamento(stockType, purchaseDate, price, ticker, quantity)
+        acaoModel.lancamento(stockType, purchaseDate, price, ticker, quantity, idCarteira)
             .then(
                 function (resultado) {
                     res.json(resultado);

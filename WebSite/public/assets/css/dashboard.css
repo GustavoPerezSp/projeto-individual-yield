@@ -53,6 +53,18 @@ a {
     font-weight: bolder;
 }
 
+.account:hover .greeting{
+    display: none;
+}
+
+.account .goodbye{
+    display: none;
+}
+
+.account:hover .goodbye{
+    display: block;
+}
+
 .new_investment {
     display: none;
     flex-direction: column;

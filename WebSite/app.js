@@ -19,6 +19,8 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var acaoRouter = require("./src/routes/acao");
 var carteiraRouter = require("./src/routes/carteira");
+var medidasRouter = require("./src/routes/medidas");
+
 
 
 app.use(express.json());
@@ -31,6 +33,8 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/acao", acaoRouter);
 app.use("/carteira", carteiraRouter);
+app.use("/medidas", medidasRouter);
+
 
 
 app.listen(PORTA_APP, function () {

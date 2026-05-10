@@ -2,7 +2,7 @@ var carteiraModel = require("../models/carteiraModel");
 
 function buscarCarteira(req, res) {
 
-    var idYielder = req.body.idYielderServer;
+    var idYielder = req.body.idYielderServer;    
 
     if (idYielder == undefined) {
         res.status(400).send("ID do Yielder está undefined!");

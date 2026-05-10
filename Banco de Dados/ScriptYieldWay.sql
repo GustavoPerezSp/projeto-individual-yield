@@ -35,3 +35,12 @@ CREATE TABLE CarteiraAcao (
   PRIMARY KEY (fkCarteira, fkAcao),
   quantidade INT
 );
+
+# SELECT PARA AS KPIS
+
+# KPI Total Investido
+SELECT SUM(cl.quantidade * l.preco) AS 'Total Investido'
+FROM CarteiraLancamento cl
+JOIN Lancamento l ON cl.fkLancamento = l.idLancamento
+JOIN Carteira c ON cl.fkCarteira = c.idCarteira
+WHERE c.fkYielder = 1;

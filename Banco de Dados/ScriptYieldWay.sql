@@ -44,3 +44,16 @@ FROM CarteiraLancamento cl
 JOIN Lancamento l ON cl.fkLancamento = l.idLancamento
 JOIN Carteira c ON cl.fkCarteira = c.idCarteira
 WHERE c.fkYielder = 1;
+
+# KPI Preco Medio
+# Provavelmente ter que trocar a modelagem do BD para calcular
+
+# KPI Maior Posicao
+SELECT l.ticker, SUM(cl.quantidade * l.preco) AS valorTotal
+FROM Lancamento l
+JOIN CarteiraLancamento cl ON l.idLancamento = cl.fkLancamento
+JOIN Carteira c ON cl.fkCarteira = c.idCarteira
+WHERE c.fkYielder = 1
+GROUP BY l.ticker
+ORDER BY valorTotal DESC
+LIMIT 1;

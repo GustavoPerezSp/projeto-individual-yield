@@ -24,7 +24,7 @@
             </div>
 
             <div>
-                <button onclick="getKpiTotalInvestido(); getKpiMaiorPosicao()">Teste</button>
+                <button onclick="getKpiTotalInvestido(); getKpiMaiorPosicao(); getKpiTicketMedioAporte()">Teste</button>
             </div>
 
             <div class="links">
@@ -513,30 +513,38 @@
         biggestPosition.innerHTML = kpiData;
     }
 
-    // function getKpiTotalInvestido(idCarteira) {
+    function getKpiTicketMedioAporte(idCarteira) {
 
 
-    //     if (proximaAtualizacao != undefined) {
-    //         clearTimeout(proximaAtualizacao);
-    //     }
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
 
-    //     fetch(`/kpi/ultimas/${idCarteira}`, { cache: 'no-store' }).then(function (response) {
-    //         if (response.ok) {
-    //             response.json().then(function (resposta) {
-    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-    //                 resposta.reverse();
+        fetch(`/kpi/ticket/${idCarteira}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos Ticket Medio Aporte: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
 
-    //                 resultTotalInvested = resposta
-    //                 refreshKpiTotalInvestido(resposta)
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-    // }
+                    resultAverageTicket = resposta
+                    refreshKpiTicketMedioAporte(resposta)
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function refreshKpiTicketMedioAporte(resposta){
+        let kpiData = resultAverageTicket[0].Ticket_Medio;
+        console.log(kpiData)
+    
+        avgInvestmentValue.innerHTML = kpiData;
+    }
+
 
 
 

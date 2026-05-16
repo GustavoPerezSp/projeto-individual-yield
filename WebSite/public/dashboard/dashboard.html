@@ -24,7 +24,7 @@
             </div>
 
             <div>
-                <button onclick="getKpiTotalInvestido()">Teste</button>
+                <button onclick="getKpiTotalInvestido(); getKpiMaiorPosicao()">Teste</button>
             </div>
 
             <div class="links">
@@ -412,6 +412,10 @@
     let userId = sessionStorage.ID_USUARIO;
     let proximaAtualizacao;
     let resultTotalInvested;
+    let resultMediumPrice;
+    let resultBiggestPosition;
+    let resultAverageTicket;
+    
 
     function getKpiTotalInvestido(idCarteira) {
 
@@ -420,7 +424,7 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/kpi/ultimas/${idCarteira}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/kpi/total/${idCarteira}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -444,4 +448,97 @@
     
         totalInvested.innerHTML = kpiData;
     }
+
+    // function getKpiPrecoMedio(idCarteira) {
+// 
+// 
+    //     if (proximaAtualizacao != undefined) {
+    //         clearTimeout(proximaAtualizacao);
+    //     }
+// 
+    //     fetch(`/kpi/medio/${idCarteira}`, { cache: 'no-store' }).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 resposta.reverse();
+// 
+    //                 resultMediumPrice = resposta
+    //                 refreshKpiTotalInvestido(resposta)
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    //         });
+    // }
+// 
+    // function refreshKpiPrecoMedio(resposta){
+    //     let kpiData = resultMediumPrice[0].TotalInvestido;
+    //     console.log(kpiData)
+    // 
+    //     mediumPrice.innerHTML = kpiData;
+    // }
+
+    function getKpiMaiorPosicao(idCarteira) {
+
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/kpi/maior/${idCarteira}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos Maior Posicao: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    resultBiggestPosition = resposta
+                    refreshKpiMaiorPosicao(resposta)
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function refreshKpiMaiorPosicao(resposta){
+        let kpiData = resultBiggestPosition[0].ticker;
+        console.log(kpiData)
+    
+        biggestPosition.innerHTML = kpiData;
+    }
+
+    // function getKpiTotalInvestido(idCarteira) {
+
+
+    //     if (proximaAtualizacao != undefined) {
+    //         clearTimeout(proximaAtualizacao);
+    //     }
+
+    //     fetch(`/kpi/ultimas/${idCarteira}`, { cache: 'no-store' }).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 resposta.reverse();
+
+    //                 resultTotalInvested = resposta
+    //                 refreshKpiTotalInvestido(resposta)
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    //         });
+    // }
+
+
+
+    
 </script>

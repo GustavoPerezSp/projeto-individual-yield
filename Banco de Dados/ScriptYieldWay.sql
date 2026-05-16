@@ -15,25 +15,24 @@ CREATE TABLE Carteira(
   fkYielder INT NOT NULL,
   CONSTRAINT chFkYielder FOREIGN KEY (fkYielder) REFERENCES Yielder(idYielder),
   PRIMARY KEY (idCarteira, fkYielder),
-  yield DECIMAL(4, 2),
-  quantoRendeu DECIMAL(10, 2),
-  rentabilidade DECIMAL(4, 2)
+  nome VARCHAR(45)
 );
 
-CREATE TABLE Acao (
-  idAcao INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE Lancamento (
+  idLancamento INT PRIMARY KEY AUTO_INCREMENT,
   ticker VARCHAR(7),
   tipo VARCHAR(45) CHECK(tipo IN('Ação', 'FIIs', 'Renda Fixa')),
   preco DECIMAL(10, 2)
 );
 
-CREATE TABLE CarteiraAcao (
-  fkCarteira INT NOT NULL,
+CREATE TABLE CarteiraLancamento (
+  fkCarteira INT,
   CONSTRAINT chFkCarteira FOREIGN KEY (fkCarteira) REFERENCES Carteira(idCarteira),
-  fkAcao INT NOT NULL,
-  CONSTRAINT chFkAcao FOREIGN KEY (fkAcao) REFERENCES Acao(idAcao),
-  PRIMARY KEY (fkCarteira, fkAcao),
-  quantidade INT
+  fkLancamento INT,
+  CONSTRAINT chFkLancamento FOREIGN KEY (fkLancamento) REFERENCES Lancamento(idLancamento),
+  PRIMARY KEY (fkCarteira, fkLancamento),
+  quantidade INT,
+  dataDaCompra DATE
 );
 
 # SELECT PARA AS KPIS
@@ -57,3 +56,11 @@ WHERE c.fkYielder = 1
 GROUP BY l.ticker
 ORDER BY valorTotal DESC
 LIMIT 1;
+
+# KPI Ticket Medio
+# Valor medio cada vez que o usuario faz um aporte
+SELECT AVG(cl.quantidade * l.preco) AS Ticket_Medio
+FROM CarteiraLancamento cl
+JOIN Lancamento l ON cl.fkLancamento = l.idLancamento
+JOIN Carteira c ON cl.fkCarteira = c.idCarteira
+WHERE c.fkYielder = 1;

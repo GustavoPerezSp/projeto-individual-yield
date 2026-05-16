@@ -415,7 +415,6 @@
 
 
 <script>
-    let userId = sessionStorage.ID_USUARIO;
     let proximaAtualizacao;
     let resultTotalInvested;
     let resultMediumPrice;
@@ -423,14 +422,14 @@
     let resultAverageTicket;
     
 
-    function getKpiTotalInvestido(idCarteira) {
+    function getKpiTotalInvestido(idYielder) {
 
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/kpi/total/${idCarteira}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/kpi/total/${idYielder}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -455,14 +454,14 @@
         totalInvested.innerHTML = kpiData;
     }
 
-    // function getKpiPrecoMedio(idCarteira) {
+    // function getKpiPrecoMedio(idYielder) {
 // 
 // 
     //     if (proximaAtualizacao != undefined) {
     //         clearTimeout(proximaAtualizacao);
     //     }
 // 
-    //     fetch(`/kpi/medio/${idCarteira}`, { cache: 'no-store' }).then(function (response) {
+    //     fetch(`/kpi/medio/${idYielder}`, { cache: 'no-store' }).then(function (response) {
     //         if (response.ok) {
     //             response.json().then(function (resposta) {
     //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -487,14 +486,14 @@
     //     mediumPrice.innerHTML = kpiData;
     // }
 
-    function getKpiMaiorPosicao(idCarteira) {
+    function getKpiMaiorPosicao(idYielder) {
 
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/kpi/maior/${idCarteira}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/kpi/maior/${idYielder}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos Maior Posicao: ${JSON.stringify(resposta)}`);
@@ -519,14 +518,14 @@
         biggestPosition.innerHTML = kpiData;
     }
 
-    function getKpiTicketMedioAporte(idCarteira) {
+    function getKpiTicketMedioAporte(idYielder) {
 
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/kpi/ticket/${idCarteira}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/kpi/ticket/${idYielder}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos Ticket Medio Aporte: ${JSON.stringify(resposta)}`);
@@ -554,5 +553,6 @@
 </script>
 
 <script>
-    getKpiTotalInvestido(); getKpiMaiorPosicao(); getKpiTicketMedioAporte()
+    let userId = sessionStorage.ID_USUARIO;
+    getKpiTotalInvestido(userId); getKpiMaiorPosicao(userId); getKpiTicketMedioAporte(userId)
 </script>

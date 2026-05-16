@@ -2,9 +2,9 @@ var kpiModel = require("../models/kpiModel");
 
 function buscarKpiTotalInvestido(req, res) {
 
-    var idCarteira = req.params.idCarteira;
+    var idYielder = req.params.idYielder;
 
-    kpiModel.buscarKpiTotalInvestido(idCarteira).then(function (resultado) {
+    kpiModel.buscarKpiTotalInvestido(idYielder).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -19,9 +19,9 @@ function buscarKpiTotalInvestido(req, res) {
 
 function buscarKpiPrecoMedio(req, res) {
 
-    var idCarteira = req.params.idCarteira;
+    var idYielder = req.params.idYielder;
 
-    kpiModel.buscarKpiPrecoMedio(idCarteira).then(function (resultado) {
+    kpiModel.buscarKpiPrecoMedio(idYielder).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -36,9 +36,9 @@ function buscarKpiPrecoMedio(req, res) {
 
 function buscarKpiMaiorPosicao(req, res) {
 
-    var idCarteira = req.params.idCarteira;
+    var idYielder = req.params.idYielder;
 
-    kpiModel.buscarKpiMaiorPosicao(idCarteira).then(function (resultado) {
+    kpiModel.buscarKpiMaiorPosicao(idYielder).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -53,9 +53,9 @@ function buscarKpiMaiorPosicao(req, res) {
 
 function buscarKpiTicketMedioAporte(req, res) {
 
-    var idCarteira = req.params.idCarteira;
+    var idYielder = req.params.idYielder;
 
-    kpiModel.buscarKpiTicketMedioAporte(idCarteira).then(function (resultado) {
+    kpiModel.buscarKpiTicketMedioAporte(idYielder).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

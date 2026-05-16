@@ -18,7 +18,7 @@ function lancamento(stockType, purchaseDate, price, ticker, quantity, idCarteira
         let idLancamento = resultado.insertId;
 
         var instrucaoSql2 = `
-        INSERT INTO carteiralancamento (fkCarteira, fkLancamento, quantidade, dataDeCompra) VALUES
+        INSERT INTO carteiralancamento (fkCarteira, fkLancamento, quantidade, dataDaCompra) VALUES
         ('${idCarteira}', '${idLancamento}', '${quantity}', '${purchaseDate}');
         `;
         

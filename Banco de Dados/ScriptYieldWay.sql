@@ -15,7 +15,7 @@ CREATE TABLE Carteira(
   fkYielder INT NOT NULL,
   CONSTRAINT chFkYielder FOREIGN KEY (fkYielder) REFERENCES Yielder(idYielder),
   PRIMARY KEY (idCarteira, fkYielder),
-  nome VARCHAR(45)
+  nomeCarteira VARCHAR(45)
 );
 
 CREATE TABLE Lancamento (
@@ -38,7 +38,7 @@ CREATE TABLE CarteiraLancamento (
 # SELECT PARA AS KPIS
 
 # KPI Total Investido
-SELECT SUM(cl.quantidade * l.preco) AS 'Total Investido'
+SELECT SUM(cl.quantidade * l.preco) AS 'TotalInvestido'
 FROM CarteiraLancamento cl
 JOIN Lancamento l ON cl.fkLancamento = l.idLancamento
 JOIN Carteira c ON cl.fkCarteira = c.idCarteira

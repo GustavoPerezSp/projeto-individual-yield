@@ -19,7 +19,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var acaoRouter = require("./src/routes/acao");
 var carteiraRouter = require("./src/routes/carteira");
-var medidasRouter = require("./src/routes/medidas");
+var kpiRouter = require("./src/routes/kpi");
 
 
 
@@ -33,7 +33,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/acao", acaoRouter);
 app.use("/carteira", carteiraRouter);
-app.use("/medidas", medidasRouter);
+app.use("/kpi", kpiRouter);
 
 
 

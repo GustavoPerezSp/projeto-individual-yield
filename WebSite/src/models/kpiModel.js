@@ -13,9 +13,15 @@ function buscarKpiTotalInvestido(idYielder) {
     return database.executar(instrucaoSql);
 }
 
-function buscarKpiPrecoMedio(idCarteira) {
+function buscarKpiPrecoMedio(idYielder, stock) {
 
-    var instrucaoSql = ``
+    var instrucaoSql = `SELECT 
+        ticker, ROUND(AVG(preco * quantidade), 2) AS precoMedio
+        FROM Lancamento l
+        JOIN CarteiraLancamento cl ON l.idLancamento = cl.fkLancamento
+        JOIN Carteira c ON cl.fkCarteira = c.idCarteira
+        WHERE c.fkYielder = ${idYielder} AND ticker = '${stock}'
+        GROUP BY ticker;`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

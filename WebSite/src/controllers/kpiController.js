@@ -20,8 +20,9 @@ function buscarKpiTotalInvestido(req, res) {
 function buscarKpiPrecoMedio(req, res) {
 
     var idYielder = req.params.idYielder;
+    var stock = req.params.stock
 
-    kpiModel.buscarKpiPrecoMedio(idYielder).then(function (resultado) {
+    kpiModel.buscarKpiPrecoMedio(idYielder, stock).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

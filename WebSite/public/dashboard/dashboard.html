@@ -23,7 +23,7 @@
                 <a href="">YieldWay</a>
             </div>
 
-            
+
 
             <div class="links">
                 <a href="../index.html">Voltar para Home</a>
@@ -118,7 +118,7 @@
                 <div class="kpis_graphs__kpi">
                     <div class="kpis_graphs__kpi__precoMedio">
                         <h6>Preço Médio</h6>
-                        <select id="sStock">
+                        <select id="sStock" onchange="getKpiPrecoMedio(sessionStorage.ID_USUARIO)">
                             <option selected>Selecione</option>
                             <!-- options do banco -->
                         </select>
@@ -461,39 +461,41 @@
         totalInvested.innerHTML = kpiData;
     }
 
-    // function getKpiPrecoMedio(idYielder) {
-    // 
-    // 
-    //     if (proximaAtualizacao != undefined) {
-    //         clearTimeout(proximaAtualizacao);
-    //     }
-    // 
-    //     fetch(`/kpi/medio/${idYielder}`, { cache: 'no-store' }).then(function (response) {
-    //         if (response.ok) {
-    //             response.json().then(function (resposta) {
-    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-    //                 resposta.reverse();
-    // 
-    //                 resultMediumPrice = resposta
-    //                 refreshKpiTotalInvestido(resposta)
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-    // }
-    // 
-    // function refreshKpiPrecoMedio(resposta){
-    //     let kpiData = resultMediumPrice[0].TotalInvestido;
-    //     console.log(kpiData)
-    // 
-    //     mediumPrice.innerHTML = kpiData;
-    // }
+    function getKpiPrecoMedio(idYielder) {
+        var stock = sStock.value;
 
-     function getStockOptions(idYielder) {
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/kpi/medio/${idYielder}/${stock}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    resultMediumPrice = resposta
+                    console.log('Result preco medio' + resultMediumPrice)
+                    refreshKpiPrecoMedio(resposta)
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function refreshKpiPrecoMedio(resposta) {
+        let kpiData = resultMediumPrice[0].precoMedio;
+        console.log('Preco medio: ' + kpiData)
+
+        mediumPrice.innerHTML = kpiData;
+    }
+
+    function getStockOptions(idYielder) {
 
 
         if (proximaAtualizacao != undefined) {
@@ -520,7 +522,7 @@
     function refreshStockOptions(resposta) {
         let stockSelect = document.getElementById('sStock')
 
-        for(let i = 0; i < resposta.length; i++){
+        for (let i = 0; i < resposta.length; i++) {
             let acao = resposta[i];
             let option = `<option>${acao.ticker.toUpperCase()}</option>`;
             stockSelect.innerHTML += option
@@ -596,5 +598,6 @@
 
 <script>
     let userId = sessionStorage.ID_USUARIO;
-    getKpiTotalInvestido(userId); getStockOptions(userId); getKpiMaiorPosicao(userId); getKpiTicketMedioAporte(userId);
+    let stock = sStock.value
+    getKpiTotalInvestido(userId); getKpiPrecoMedio(userId); getStockOptions(userId); getKpiMaiorPosicao(userId); getKpiTicketMedioAporte(userId);
 </script>

@@ -7,7 +7,7 @@ router.get("/total/:idYielder", function (req, res) {
     kpiController.buscarKpiTotalInvestido(req, res);
 });
 
-router.get("/medio/:idYielder", function (req, res) {
+router.get("/medio/:idYielder/:stock", function (req, res) {
     kpiController.buscarKpiPrecoMedio(req, res);
 });
 

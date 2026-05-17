@@ -52,8 +52,6 @@ JOIN Carteira c ON cl.fkCarteira = c.idCarteira
 WHERE c.fkYielder = 4
 GROUP BY ticker;
 
-
-
 # Buscar Acoes do Usuario para o Select da KPI PM
 SELECT DISTINCT ticker
 FROM Lancamento l

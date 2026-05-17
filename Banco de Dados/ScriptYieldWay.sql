@@ -86,3 +86,12 @@ WHERE c.fkYielder = 1
 GROUP BY YEAR(dataDaCompra), MONTH(dataDaCompra), mesAno
 ORDER BY YEAR(dataDaCompra) DESC, MONTH(dataDaCompra) DESC
 LIMIT 12;
+
+# Dados para o Grafico de Pizza
+SELECT tipo, SUM(preco * quantidade) AS totalInvestido
+FROM Lancamento l
+JOIN CarteiraLancamento cl ON l.idLancamento = cl.fkLancamento
+JOIN Carteira c ON cl.fkCarteira = c.idCarteira
+WHERE c.fkYielder = 1
+GROUP BY tipo;
+

@@ -47,6 +47,13 @@ WHERE c.fkYielder = 1;
 # KPI Preco Medio
 # Provavelmente ter que trocar a modelagem do BD para calcular
 
+# Buscar Acoes do Usuario para o Select da KPI PM
+SELECT DISTINCT ticker
+FROM Lancamento l
+JOIN CarteiraLancamento cl ON l.idLancamento = cl.fkLancamento
+JOIN Carteira c ON cl.fkCarteira = c.idCarteira
+WHERE c.fkYielder = 1;
+
 # KPI Maior Posicao
 SELECT l.ticker, SUM(cl.quantidade * l.preco) AS valorTotal
 FROM Lancamento l

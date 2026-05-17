@@ -116,7 +116,13 @@
                 </div>
 
                 <div class="kpis_graphs__kpi">
-                    <h6>Preço Médio</h6>
+                    <div class="kpis_graphs__kpi__precoMedio">
+                        <h6>Preço Médio</h6>
+                        <select id="sStock">
+                            <option selected>Selecione</option>
+                            <!-- options do banco -->
+                        </select>
+                    </div>
                     <p>R$ <span id="mediumPrice"></span></p>
                 </div>
 
@@ -374,18 +380,18 @@
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-                    
+
                     //   limparFormulario();
-                    alert('Ativo Lançado com Sucesso!!')   
-                    
+                    alert('Ativo Lançado com Sucesso!!')
+
                     setTimeout(() => {
                         window.location = "/dashboard/dashboard.html";
                     }, "200");
-                    
+
                     closeNewInvestment()
                     // document.getElementById('new_investment').style.display = "none";              
                     // document.getElementById('filter').style.display = "none";  
-                    cleanForm()            
+                    cleanForm()
 
                 } else {
                     //   document.getElementById('login__messages').style.display = "block";
@@ -420,7 +426,8 @@
     let resultMediumPrice;
     let resultBiggestPosition;
     let resultAverageTicket;
-    
+    let resultStockOptions;
+    let stockOptions = [];
 
     function getKpiTotalInvestido(idYielder) {
 
@@ -447,26 +454,26 @@
             });
     }
 
-    function refreshKpiTotalInvestido(resposta){
+    function refreshKpiTotalInvestido(resposta) {
         let kpiData = resultTotalInvested[0].TotalInvestido;
         console.log(kpiData)
-    
+
         totalInvested.innerHTML = kpiData;
     }
 
     // function getKpiPrecoMedio(idYielder) {
-// 
-// 
+    // 
+    // 
     //     if (proximaAtualizacao != undefined) {
     //         clearTimeout(proximaAtualizacao);
     //     }
-// 
+    // 
     //     fetch(`/kpi/medio/${idYielder}`, { cache: 'no-store' }).then(function (response) {
     //         if (response.ok) {
     //             response.json().then(function (resposta) {
     //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
     //                 resposta.reverse();
-// 
+    // 
     //                 resultMediumPrice = resposta
     //                 refreshKpiTotalInvestido(resposta)
     //             });
@@ -478,13 +485,48 @@
     //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
     //         });
     // }
-// 
+    // 
     // function refreshKpiPrecoMedio(resposta){
     //     let kpiData = resultMediumPrice[0].TotalInvestido;
     //     console.log(kpiData)
     // 
     //     mediumPrice.innerHTML = kpiData;
     // }
+
+     function getStockOptions(idYielder) {
+
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/kpi/acoes/${idYielder}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos Opcoes de Acao: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    refreshStockOptions(resposta)
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function refreshStockOptions(resposta) {
+        let stockSelect = document.getElementById('sStock')
+
+        for(let i = 0; i < resposta.length; i++){
+            let acao = resposta[i];
+            let option = `<option>${acao.ticker}</option>`;
+            stockSelect.innerHTML += option
+        }
+
+    }
 
     function getKpiMaiorPosicao(idYielder) {
 
@@ -511,10 +553,10 @@
             });
     }
 
-    function refreshKpiMaiorPosicao(resposta){
+    function refreshKpiMaiorPosicao(resposta) {
         let kpiData = resultBiggestPosition[0].ticker;
         console.log(kpiData)
-    
+
         biggestPosition.innerHTML = kpiData;
     }
 
@@ -543,16 +585,16 @@
             });
     }
 
-    function refreshKpiTicketMedioAporte(resposta){
+    function refreshKpiTicketMedioAporte(resposta) {
         let kpiData = resultAverageTicket[0].Ticket_Medio;
         console.log(kpiData)
-    
+
         avgInvestmentValue.innerHTML = kpiData;
     }
-   
+
 </script>
 
 <script>
     let userId = sessionStorage.ID_USUARIO;
-    getKpiTotalInvestido(userId); getKpiMaiorPosicao(userId); getKpiTicketMedioAporte(userId)
+    getKpiTotalInvestido(userId); getStockOptions(userId); getKpiMaiorPosicao(userId); getKpiTicketMedioAporte(userId);
 </script>

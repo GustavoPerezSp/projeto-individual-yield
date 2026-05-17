@@ -21,6 +21,19 @@ function buscarKpiPrecoMedio(idCarteira) {
     return database.executar(instrucaoSql);
 }
 
+function buscarAcoesSelectKpiPrecoMedio(idYielder) {
+
+    var instrucaoSql = `SELECT 
+            DISTINCT ticker
+            FROM Lancamento l
+            JOIN CarteiraLancamento cl ON l.idLancamento = cl.fkLancamento
+            JOIN Carteira c ON cl.fkCarteira = c.idCarteira
+            WHERE c.fkYielder = ${idYielder};`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function buscarKpiMaiorPosicao(idYielder) {
 
     var instrucaoSql = `SELECT 
@@ -53,6 +66,7 @@ function buscarKpiTicketMedioAporte(idYielder) {
 module.exports = {
     buscarKpiTotalInvestido,
     buscarKpiPrecoMedio,
+    buscarAcoesSelectKpiPrecoMedio,
     buscarKpiMaiorPosicao,
     buscarKpiTicketMedioAporte
 }

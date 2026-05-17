@@ -195,6 +195,15 @@ a {
     font-size: 27px;
 }
 
+.kpis_graphs__kpi__precoMedio{
+    display: flex;
+    gap: 3%;
+}
+
+#sStock{
+    width: 30%;
+}
+
 #titleAvgInvestment{
     font-size: 25px;
 }

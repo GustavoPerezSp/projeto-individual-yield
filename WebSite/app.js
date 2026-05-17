@@ -20,6 +20,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var acaoRouter = require("./src/routes/acao");
 var carteiraRouter = require("./src/routes/carteira");
 var kpiRouter = require("./src/routes/kpi");
+var graficosRouter = require("./src/routes/graficos");
 
 
 
@@ -34,6 +35,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/acao", acaoRouter);
 app.use("/carteira", carteiraRouter);
 app.use("/kpi", kpiRouter);
+app.use("/graficos", graficosRouter);
 
 
 

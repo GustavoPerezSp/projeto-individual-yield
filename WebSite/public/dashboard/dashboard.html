@@ -274,31 +274,7 @@
 </script>
 
 <script>
-    const ctx = document.getElementById('barGraph');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Maio', 'Jun', 'Jan', 'Fev', 'Mar', 'Abr', 'Maio', 'Jun'],
-            datasets: [{
-                label: 'Yield Com o Passar do Tempo',
-                data: [12, 19, 3, 5, 2, 3, 12, 19, 3, 5, 2, 3],
-                borderWidth: 1,
-                backgroundColor: [
-                    '#FDC409',
-                    '#111111',
-                    '#E09B2D'
-                ]
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
 
     const ctz = document.getElementById('pieGraph');
 
@@ -597,7 +573,80 @@
 </script>
 
 <script>
+    function obterDadosGrafico(idYielder) {
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/graficos/patrimonio/${idYielder}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos Patrimonio: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico(resposta) {
+        let labelsMonth = [];
+        let heritageData = [];
+
+        for (let i = 0; i < resposta.length; i++) {
+            let data = resposta[i];
+            labelsMonth.push(data.mesAno);
+            heritageData.push(data.patrimonioTotal);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labelsMonth)
+        console.log('Dados:')
+        console.log(heritageData)
+        console.log('----------------------------------------------')
+
+
+        const ctx = document.getElementById('barGraph');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labelsMonth,
+                datasets: [{
+                    label: 'Patrimonio Nos Últimos 12 Meses',
+                    data: heritageData,
+                    borderWidth: 1,
+                    backgroundColor: [
+                        '#FDC409',
+                        '#111111',
+                        '#E09B2D'
+                    ]
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+</script>
+
+
+<script>
     let userId = sessionStorage.ID_USUARIO;
-    let stock = sStock.value
-    getKpiTotalInvestido(userId); getKpiPrecoMedio(userId); getStockOptions(userId); getKpiMaiorPosicao(userId); getKpiTicketMedioAporte(userId);
+    getKpiTotalInvestido(userId); getKpiPrecoMedio(userId); getStockOptions(userId); 
+    getKpiMaiorPosicao(userId); getKpiTicketMedioAporte(userId); obterDadosGrafico(userId)
 </script>

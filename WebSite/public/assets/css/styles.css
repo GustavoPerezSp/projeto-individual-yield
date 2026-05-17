@@ -45,6 +45,10 @@ a {
     color: #FFFFFF;
 }
 
+#registerButton:hover{
+    color: #FFFFFF;
+}
+
 .section {
     display: flex;
     flex-direction: row;
@@ -300,9 +304,19 @@ a {
     gap: 5%;
 }
 
-.login__form__input {
+.login__form__label{
+    font-size: 24px;
+}
+
+.login__form__input__register {
     width: 95%;
     height: 100%;
+}
+
+.login__form__input {
+    width: 95%;
+    height: 70px;
+    font-size: 24px;
 }
 
 #login__form__button {

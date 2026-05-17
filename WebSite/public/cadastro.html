@@ -36,22 +36,22 @@
 
         <div class="form_field">
           <label for="iName">Nome Completo</label>
-          <input class="login__form__input" type="text" name="" id="iName">
+          <input class="login__form__input__register" type="text" name="" id="iName">
         </div>
 
         <div class="form_field">
           <label for="iUsername">Nome de Usuário</label>
-          <input class="login__form__input" type="text" name="" id="iUsername">
+          <input class="login__form__input__register" type="text" name="" id="iUsername">
         </div>
 
         <div class="form_field">
           <label for="iBirthdate">Data de Nascimento</label>
-          <input class="login__form__input" type="date" name="" id="iBirthdate">
+          <input class="login__form__input__register" type="date" name="" id="iBirthdate">
         </div>
 
         <div class="form_field" id="form_field_email">
           <label for="iEmail">Email</label>
-          <input class="login__form__input" type="text" name="" id="iEmail"
+          <input class="login__form__input__register" type="text" name="" id="iEmail"
             oninput="emailValidator(); confirmValidations()">
           <p style="color: red; font-size: 18px; display: none;" id="emailChecker">
             Email deve conter '@' E '.com OU .school'</p>
@@ -59,7 +59,7 @@
 
         <div class="form_field" id="form_field_password">
           <label for="iPassword">Senha</label>
-          <input class="login__form__input" type="password" name="" id="iPassword"
+          <input class="login__form__input__register" type="password" name="" id="iPassword"
             oninput="passwordValidator(); confirmPassword(); confirmValidations()">
           <div style="color: red; font-size: 18px; display: none;" id="passwordChecker">
             Senha deve conter: Ao menos 8 caracteres ; 1 Letra Maiúscula ; 1 Letra Minúscula ; 1 Número ; 1 Caractere
@@ -69,7 +69,7 @@
 
         <div class="form_field">
           <label for="iConfirmPassword">Confirme sua Senha</label>
-          <input class="login__form__input" type="password" name="" id="iConfirmPassword"
+          <input class="login__form__input__register" type="password" name="" id="iConfirmPassword"
             oninput="confirmPassword(); confirmValidations()">
           <p style="color: red; font-size: 18px; display: none;" id="passwordConfirmChecker">
             As senhas não se coincidem!</p>

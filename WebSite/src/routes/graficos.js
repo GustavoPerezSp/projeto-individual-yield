@@ -9,4 +9,8 @@ router.get("/patrimonio/:idYielder", function (req, res) {
     graficosController.buscarPatrimonio(req, res);
 })
 
+router.get("/porcentagem/:idYielder", function (req, res) {
+    graficosController.buscarPorcentagemDosTipos(req, res);
+})
+
 module.exports = router;

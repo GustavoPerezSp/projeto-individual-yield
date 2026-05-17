@@ -274,33 +274,6 @@
 </script>
 
 <script>
-
-
-    const ctz = document.getElementById('pieGraph');
-
-    new Chart(ctz, {
-        type: 'pie',
-        data: {
-            labels: [
-                'Renda Fixa',
-                'Ações',
-                'FIIs'
-            ],
-            datasets: [{
-                label: 'My First Dataset',
-                data: [300, 750, 700],
-                backgroundColor: [
-                    'rgb(255, 99, 132)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 205, 86)'
-                ],
-                hoverOffset: 4
-            }]
-        },
-    });
-</script>
-
-<script>
     function cadastrar() {
         // aguardar();
 
@@ -644,9 +617,80 @@
     }
 </script>
 
+<script>
+    function obterDadosGraficoPizza(idYielder) {
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/graficos/porcentagem/${idYielder}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos Porcentagem: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGraficoPizza(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGraficoPizza(resposta) {
+        let labelsTypes = [];
+        let heritageData = [];
+
+        for (let i = 0; i < resposta.length; i++) {
+            let data = resposta[i];
+            labelsTypes.push(data.tipo);
+            heritageData.push(data.totalInvestido);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labelsTypes)
+        console.log('Dados:')
+        console.log(heritageData)
+        console.log('----------------------------------------------')
+
+
+        const ctz = document.getElementById('pieGraph');
+
+        new Chart(ctz, {
+            type: 'pie',
+            data: {
+                labels: labelsTypes,
+                datasets: [{
+                    label: 'Distribuiçâo dos Ativos',
+                    data: heritageData,
+                    backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
+                    ],
+                    hoverOffset: 4
+                }]
+            },
+        });
+    }
+</script>
+
+<script>
+
+
+
+</script>
+
 
 <script>
     let userId = sessionStorage.ID_USUARIO;
-    getKpiTotalInvestido(userId); getKpiPrecoMedio(userId); getStockOptions(userId); 
-    getKpiMaiorPosicao(userId); getKpiTicketMedioAporte(userId); obterDadosGrafico(userId)
+    getKpiTotalInvestido(userId); getKpiPrecoMedio(userId); getStockOptions(userId);
+    getKpiMaiorPosicao(userId); getKpiTicketMedioAporte(userId); obterDadosGrafico(userId); obterDadosGraficoPizza(userId);
 </script>

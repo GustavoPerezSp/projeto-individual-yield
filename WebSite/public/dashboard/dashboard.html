@@ -522,7 +522,7 @@
 
         for(let i = 0; i < resposta.length; i++){
             let acao = resposta[i];
-            let option = `<option>${acao.ticker}</option>`;
+            let option = `<option>${acao.ticker.toUpperCase()}</option>`;
             stockSelect.innerHTML += option
         }
 

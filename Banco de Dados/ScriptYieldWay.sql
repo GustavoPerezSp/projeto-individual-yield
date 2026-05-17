@@ -45,7 +45,14 @@ JOIN Carteira c ON cl.fkCarteira = c.idCarteira
 WHERE c.fkYielder = 1;
 
 # KPI Preco Medio
-# Provavelmente ter que trocar a modelagem do BD para calcular
+SELECT ticker, ROUND(AVG(preco * quantidade), 2)
+FROM Lancamento l
+JOIN CarteiraLancamento cl ON l.idLancamento = cl.fkLancamento
+JOIN Carteira c ON cl.fkCarteira = c.idCarteira
+WHERE c.fkYielder = 4
+GROUP BY ticker;
+
+
 
 # Buscar Acoes do Usuario para o Select da KPI PM
 SELECT DISTINCT ticker

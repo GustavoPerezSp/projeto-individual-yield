@@ -76,3 +76,13 @@ FROM CarteiraLancamento cl
 JOIN Lancamento l ON cl.fkLancamento = l.idLancamento
 JOIN Carteira c ON cl.fkCarteira = c.idCarteira
 WHERE c.fkYielder = 1;
+
+# Dados para o Grafico de Barras
+SELECT CONCAT(MONTH(dataDaCompra), '/' ,YEAR(dataDaCompra)) AS mesAno, ROUND(SUM(preco * quantidade), 2) AS patrimonioTotal
+FROM Lancamento l
+JOIN CarteiraLancamento cl ON l.idLancamento = cl.fkLancamento
+JOIN Carteira c ON cl.fkCarteira = c.idCarteira
+WHERE c.fkYielder = 1
+GROUP BY YEAR(dataDaCompra), MONTH(dataDaCompra), mesAno
+ORDER BY YEAR(dataDaCompra) DESC, MONTH(dataDaCompra) DESC
+LIMIT 12;

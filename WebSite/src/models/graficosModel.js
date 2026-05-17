@@ -10,9 +10,9 @@ function buscarPatrimonio(idYielder) {
             JOIN CarteiraLancamento cl ON l.idLancamento = cl.fkLancamento
             JOIN Carteira c ON cl.fkCarteira = c.idCarteira
             WHERE c.fkYielder = ${idYielder}
-            GROUP BY mesAno
-            ORDER BY mesAno DESC
-            LIMIT 12;`;
+            GROUP BY YEAR(dataDaCompra), MONTH(dataDaCompra), mesAno
+            ORDER BY YEAR(dataDaCompra) DESC, MONTH(dataDaCompra) DESC
+            LIMIT 12;`
 
 
 

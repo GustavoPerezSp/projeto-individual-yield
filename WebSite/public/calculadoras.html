@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadoras - YieldWay</title>
+    <link rel="stylesheet" href="assets/css/calculator.css">
+</head>
+
+<body>
+
+    <div class="content">
+
+        <h1>Escolha a Calculadora:</h1>
+
+        <div class="container">
+
+            <div class="calculator__button__holder">
+                <button id="calculator__fees" onclick="redirectFeeCalculator()">
+                    <div class="img__holder">
+                        <img src="https://cdn-icons-png.flaticon.com/512/17283/17283251.png" alt="">
+                    </div>
+                    <h2>Calculadora de Juros Compostos</h2>
+                </button>
+            </div>
+
+
+            <div class="calculator__button__holder">
+                <button id="calculator__ceil" onclick="redirectCeilCalculator">
+                    <div class="img__holder">
+                        <img src="https://cdn-icons-png.flaticon.com/512/12237/12237916.png" alt="">
+                    </div>
+                    <h2>Calculadora de Preço Teto</h2>
+                </button>
+            </div>
+
+        </div>
+
+    </div id="content">
+
+
+</body>
+
+</html>
+
+<script>
+    function redirectFeeCalculator(){
+        window.location = "./calculadoraJurosCompostos.html";
+    }
+
+    function redirectCeilCalculator(){
+        window.location = "./calculadoraPrecoTeto.html";
+    }
+</script>

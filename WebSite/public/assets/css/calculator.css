@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: "Righteous", sans-serif;
+}
+
+a {
+  color: #ffffff;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1%;
+  width: 100%;
+}
+.calculator__button__holder {
+  width: 48%;
+  height: 550px;
+}
+
+.calculator__button__holder button {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  background-color: #fdc409;
+}
+
+.calculator__button__holder button:hover {
+  background-color: #e09b2d;
+  cursor: pointer;
+}
+
+.img__holder {
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+  background-color: #ffffff;
+  border-radius: 90%;
+  width: 70%;
+  height: 50%;
+  margin: 0 auto;
+
+}
+
+.img__holder img {
+  width: 60%;
+  height: 60%;
+}

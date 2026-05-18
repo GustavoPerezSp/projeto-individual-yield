@@ -8,7 +8,7 @@ function lancamento(stockType, purchaseDate, price, ticker, quantity, idCarteira
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO lancamento (ticker, tipo, preco) VALUES
+        INSERT INTO Lancamento (ticker, tipo, preco) VALUES
          ('${ticker}', '${stockType}', '${price}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -18,7 +18,7 @@ function lancamento(stockType, purchaseDate, price, ticker, quantity, idCarteira
         let idLancamento = resultado.insertId;
 
         var instrucaoSql2 = `
-        INSERT INTO carteiralancamento (fkCarteira, fkLancamento, quantidade, dataDaCompra) VALUES
+        INSERT INTO CarteiraLancamento (fkCarteira, fkLancamento, quantidade, dataDaCompra) VALUES
         ('${idCarteira}', '${idLancamento}', '${quantity}', '${purchaseDate}');
         `;
         

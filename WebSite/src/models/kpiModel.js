@@ -16,7 +16,7 @@ function buscarKpiTotalInvestido(idYielder) {
 function buscarKpiPrecoMedio(idYielder, stock) {
 
     var instrucaoSql = `SELECT 
-        ticker, ROUND(AVG(preco * quantidade), 2) AS precoMedio
+        ticker, ROUND(AVG(preco), 2) AS precoMedio
         FROM Lancamento l
         JOIN CarteiraLancamento cl ON l.idLancamento = cl.fkLancamento
         JOIN Carteira c ON cl.fkCarteira = c.idCarteira

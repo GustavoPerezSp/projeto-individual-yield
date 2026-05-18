@@ -3,7 +3,7 @@ var database = require("../database/config")
 function buscarCarteira(idYielder) {
     console.log("ACESSEI O CARTEIRA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", idYielder)
     var instrucaoSql = `
-        SELECT idCarteira FROM carteira WHERE fkYielder = '${idYielder}';
+        SELECT idCarteira FROM Carteira WHERE fkYielder = '${idYielder}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -16,7 +16,7 @@ function cadastrar(nomeCarteira, idYielder) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO carteira (fkYielder, nomeCarteira) VALUES
+        INSERT INTO Carteira (fkYielder, nomeCarteira) VALUES
          ('${idYielder}', '${nomeCarteira}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

@@ -30,6 +30,10 @@ a {
     font-size: 40px;
 }
 
+.links{
+    display: flex;
+    gap: 20px;
+}
 .header a:hover {
     color: #FDC409;
 }

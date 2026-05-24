@@ -1,14 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculadora Juros Compostos</title>
+    <link rel="stylesheet" href="assets/css/calculator.css">
 </head>
+
 <body>
-    
-    <h1>
-        Juros Compostos
+
+    <h1 class="greeting">
+        Seja bem vindo, <span id="username"></span>! <br> Aproveite a nossa Calculadora de Juros Compostos.
     </h1>
+
+    <div class="calculator_container">
+        <div class="calculator__field">
+            <label for="iInitialCapital">Digite seu Capital Inicial:</label>
+            <input type="text" id="iInitialCapital">
+        </div>
+
+        <div class="calculator__field">
+            <label for="iInitialCapital">Digite seu Aporte Mensal:</label>
+            <input type="text" id="iInitialCapital">
+        </div>
+
+        <div class="calculator__field">
+            <label for="iInitialCapital">Digite a Taxa de Juros (%):</label>
+            <input type="text" id="iInitialCapital">
+        </div>
+
+        <div class="calculator__field">
+            <label for="iInitialCapital">Digite o tempo que o dinheiro ficará investido:</label>
+            <input type="text" id="iInitialCapital">
+        </div>
+
+        <button class="calculator__button" onclick="calculateCompoundInterest()">Calcular</button>
+    </div>
+
+
 </body>
+
 </html>
+
+<script>
+    username.innerHTML = sessionStorage.ID_USUARIO;
+
+    function calculateCompoundInterest(){
+        alert('clicou em')
+    }
+</script>

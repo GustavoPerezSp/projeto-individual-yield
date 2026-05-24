@@ -11,31 +11,46 @@
 <body>
 
     <h1 class="greeting">
-        Seja bem vindo, <span id="username"></span>! <br> Aproveite a nossa Calculadora de Juros Compostos.
+        Seja bem vindo, <span id="username">Yielder</span>! <br> Aproveite a nossa Calculadora de Juros Compostos.
     </h1>
 
     <div class="calculator_container">
         <div class="calculator__field">
             <label for="iInitialCapital">Digite seu Capital Inicial:</label>
-            <input type="text" id="iInitialCapital">
+            <input type="number" id="iInitialCapital">
         </div>
 
         <div class="calculator__field">
-            <label for="iInitialCapital">Digite seu Aporte Mensal:</label>
-            <input type="text" id="iInitialCapital">
+            <label for="iMonthlyContribution">Digite seu Aporte Mensal:</label>
+            <input type="number" id="iMonthlyContribution">
         </div>
 
         <div class="calculator__field">
-            <label for="iInitialCapital">Digite a Taxa de Juros (%):</label>
-            <input type="text" id="iInitialCapital">
+            <label for="iInterestTax">Digite a Taxa de Juros (%):</label>
+            <div class="specialField">
+                <input type="number" id="iInterestTax">
+                <select id="sTimeOptionTax">
+                    <option selected>Ao mês</option>
+                    <option>Ao ano</option>
+                </select>
+            </div>
         </div>
 
         <div class="calculator__field">
-            <label for="iInitialCapital">Digite o tempo que o dinheiro ficará investido:</label>
-            <input type="text" id="iInitialCapital">
+            <label for="iInvestedTime">Digite o tempo que o dinheiro ficará investido:</label>
+            <div class="specialField">
+                <input type="number" id="iInvestedTime">
+                <select id="sTimeOption">
+                    <option selected>Meses</option>
+                    <option>Anos</option>
+                </select>
+            </div>
         </div>
 
         <button class="calculator__button" onclick="calculateCompoundInterest()">Calcular</button>
+        
+        <div id="dShow"></div>
+    
     </div>
 
 
@@ -44,9 +59,62 @@
 </html>
 
 <script>
-    username.innerHTML = sessionStorage.ID_USUARIO;
 
-    function calculateCompoundInterest(){
-        alert('clicou em')
+    let initialCapital;
+    let monthlyContribution;
+    let investedTime;
+    let investmentTime;
+    let interestTax;
+    let interestTime;
+    let interestTaxDecimal;
+
+    if (sessionStorage.ID_USUARIO != null) {
+        username.innerHTML = sessionStorage.ID_USUARIO;
+    }
+
+    function calculateCompoundInterest() {
+
+        initialCapital = Number(iInitialCapital.value);
+        monthlyContribution = Number(iMonthlyContribution.value);
+        dataPattern()
+
+        let accumulatedInitial = 0;
+        let accumulatedContributions = 0;
+
+        if (interestTaxDecimal > 0) {
+            accumulatedInitial = initialCapital * ((1 + interestTaxDecimal) ** investedTime);
+            accumulatedContributions = monthlyContribution * (((1 + interestTaxDecimal) ** investedTime - 1) / interestTaxDecimal);
+        } else {
+            accumulatedInitial = initialCapital;
+            accumulatedContributions = monthlyContribution * investedTime;
+        }
+
+        let finalTotalValue = accumulatedInitial + accumulatedContributions;
+        let totalInvested = initialCapital + (monthlyContribution * investedTime);
+        let totalInterestEarned = finalTotalValue - totalInvested;
+
+        let msg = `Valor Total Final: R$ ${finalTotalValue.toFixed(2)} <br>
+                    Total Investido do seu bolso: R$ ${totalInvested.toFixed(2)} <br>
+                    Total ganho apenas em Juros: R$ ${totalInterestEarned.toFixed(2)}`;
+
+        dShow.innerHTML = msg
+
+    }
+
+    function dataPattern() {
+
+        investedTime = Number(iInvestedTime.value);
+        investmentTime = sTimeOption.value;
+        if (investmentTime == "Anos") {
+            investedTime *= 12
+        }
+
+        interestTax = Number(iInterestTax.value);
+        interestTime = sTimeOptionTax.value
+        interestTaxDecimal = interestTax / 100;
+
+        if (interestTime == "Ao ano") {
+            interestTaxDecimal = (1 + interestTaxDecimal) ** (1 / 12) - 1;
+        }
     }
 </script>

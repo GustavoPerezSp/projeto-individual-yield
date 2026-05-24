@@ -5,14 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Juros Compostos</title>
+    <script src="../js/sessao.js"></script>
     <link rel="stylesheet" href="assets/css/calculator.css">
 </head>
 
 <body>
 
-    <h1 class="greeting">
-        Seja bem vindo, <span id="username">Yielder</span>! <br> Aproveite a nossa Calculadora de Juros Compostos.
-    </h1>
+    <div class="header">
+
+        <div class="logo">
+            <a href="">YieldWay</a>
+        </div>
+
+        <div class="links">
+            <a href="index.html">Página Inicial</a>
+            <a href="calculadoras.html">Calculadoras</a>
+        </div>
+
+        <div class="account">
+            <div class="notLoggedIn" id="notLoggedIn">
+                <a href="login.html">Login</a>
+                <a href="cadastro.html" class="register">Cadastre-se</a>
+            </div>
+
+            <div class="loggedIn" id="loggedIn">
+                <p class="greeting">Olá, <span id="sUsername"></span>!</p>
+                <p class="goodbye" onclick="limparSessao()">Sair da Conta</p>
+            </div>
+
+
+        </div>
+
+    </div class="header">
 
     <div class="calculator_container">
         <div class="calculator__field">
@@ -48,15 +72,26 @@
         </div>
 
         <button class="calculator__button" onclick="calculateCompoundInterest()">Calcular</button>
-        
+
         <div id="dShow"></div>
-    
+
     </div>
 
 
 </body>
 
 </html>
+
+<script>
+
+    if (sessionStorage.ID_USUARIO != null) {
+        sUsername.innerHTML = sessionStorage.NOME_USUARIO
+        document.getElementById("loggedIn").style.display = "flex"
+    } else {
+        document.getElementById("notLoggedIn").style.display = "flex"
+    }
+
+</script>
 
 <script>
 
@@ -67,10 +102,6 @@
     let interestTax;
     let interestTime;
     let interestTaxDecimal;
-
-    if (sessionStorage.ID_USUARIO != null) {
-        username.innerHTML = sessionStorage.ID_USUARIO;
-    }
 
     function calculateCompoundInterest() {
 

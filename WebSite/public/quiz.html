@@ -88,6 +88,10 @@
 
         </div>
 
+        <div id="modal">
+            <h1>Seu Perfil de Investidor é: <span id="sInvestorProfile"></span></h1>
+        </div>
+
 
 
     </div>
@@ -138,6 +142,8 @@
 <script>
     let numeroDaQuestaoAtual = 0
     let quantidadeDeQuestoes = listaDeQuestoes.length
+    let riskLevel = 0;
+    let investorProfile = ``;
     // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
 
     function startQuiz() {
@@ -194,6 +200,18 @@
             habilitarAlternativas(false)
 
         }
+
+        options.forEach((option) => {
+            if (option.checked) {
+                if (option.value == `alternativaA`) {
+                    riskLevel++
+                } else if (option.value == `alternativaB`) {
+                    riskLevel += 2
+                } else {
+                    riskLevel += 3
+                }
+            }
+        })
     }
 
     function avancar() {
@@ -220,7 +238,20 @@
     }
 
     function finalizarJogo() {
-        alert(`acabou kk`)
+        
+        if(riskLevel <= 4){
+            investorProfile = `Conservador`
+        }else if(riskLevel <= 7){
+            investorProfile = `Moderado`
+        }else{
+            investorProfile = `Arrojado`
+        }
+        
+        sInvestorProfile.innerHTML = investorProfile;
+
+        document.getElementById('quiz').style.display = "none";
+        document.getElementById('modal').style.display = "flex";
+
     }
 
 </script>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Investidor</title>
+    <link rel="stylesheet" href="assets/css/quizStyle.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <div class="logo">
+                <a href="">YieldWay</a>
+            </div>
+
+            <div class="links">
+                <a href="index.html">Página Inicial</a>
+                <a href="calculadoras.html">Calculadoras</a>
+            </div>
+
+            <div class="account">
+                <div class="notLoggedIn" id="notLoggedIn">
+                    <a href="login.html">Login</a>
+                    <a href="cadastro.html" class="register">Cadastre-se</a>
+                </div>
+
+                <div class="loggedIn" id="loggedIn">
+                    <p class="greeting">Olá, <span id="sUsername"></span>!</p>
+                    <p class="goodbye" onclick="limparSessao()">Sair da Conta</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="startGame">
+            <h1>
+                Olá, <span id="ssUsername">Yielder</span>! Vamos dar o primeiro passo com segurança?
+            </h1>
+
+            <p>No mercado financeiro, não existe certo ou errado, existe o que funciona para você. Responda a 3 perguntas rápidas para calibrarmos o seu perfil. O resultado vai destravar as melhores estratégias para você multiplicar o seu patrimônio sem surpresas pelo caminho, garantindo que a sua futura carteira seja construída com a estratégia perfeita para os seus objetivos e para o seu sono tranquilo. Leva menos de 5 minuto!</p>
+
+            <button class="startButton">Iniciar o Quiz</button>
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    if (sessionStorage.ID_USUARIO != null) {
+        sUsername.innerHTML = sessionStorage.NOME_USUARIO
+        ssUsername.innerHTML = sessionStorage.NOME_USUARIO
+        document.getElementById("loggedIn").style.display = "flex"
+    } else {
+        document.getElementById("notLoggedIn").style.display = "flex"
+    }
+
+</script>

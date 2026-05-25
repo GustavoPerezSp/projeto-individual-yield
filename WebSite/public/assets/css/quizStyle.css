@@ -1,0 +1,116 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: "Righteous", sans-serif;
+}
+
+a {
+  color: #ffffff;
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: #111111;
+    padding: 2%;
+    font-size: 16px;
+}
+
+.header .logo {
+    font-size: 40px;
+}
+
+.links{
+    display: flex;
+    gap: 20px;
+}
+.header a:hover {
+    color: #FDC409;
+}
+
+.register {
+    background-color: #FDC409;
+    padding: 4px;
+    border-radius: 16px;
+    color: #111111;
+}
+
+.register:hover {
+    color: #FFFFFF;
+}
+
+#registerButton:hover{
+    color: #FFFFFF;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15%;
+}
+
+.account button {
+    background-color: #FDC409;
+    color: #FFFFFF;
+    font-weight: bolder;
+}
+
+.notLoggedIn{
+  display: none;
+  width: 100%;
+  gap: 10px;
+}
+
+.loggedIn{
+  display: none;
+  width: 100%;
+  gap: 10px;
+  color: #FFFFFF;
+}
+
+.loggedIn:hover .greeting{
+    display: none;
+}
+
+.loggedIn .goodbye{
+    display: none;
+}
+
+.loggedIn:hover .goodbye{
+    display: block;
+    cursor: pointer;
+}
+
+.startGame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    
+    width: 80%;
+    margin: 2% auto;
+}
+
+.startButton{
+    width: 80%;
+    height: 50px;
+    background-color: #FDC409;
+    color: #FFFFFF;
+    border: 1px solid black;
+    border-radius: 16px;
+}

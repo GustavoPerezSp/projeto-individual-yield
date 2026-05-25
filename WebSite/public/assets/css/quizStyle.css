@@ -103,7 +103,11 @@ a {
     gap: 20px;
     
     width: 80%;
-    margin: 2% auto;
+    margin: 10% auto;
+}
+
+.startGame h1{
+    text-align: center;
 }
 
 .startButton{
@@ -111,6 +115,51 @@ a {
     height: 50px;
     background-color: #FDC409;
     color: #FFFFFF;
+    font-size: 26px;
+    font-weight: bold;
     border: 1px solid black;
     border-radius: 16px;
+}
+
+.startButton:hover{
+    color: #111111;
+    cursor: pointer;
+}
+
+/* ======================================================================== */
+
+.quiz{
+    display: none;
+    flex-direction: column;
+
+    width: 95%;
+    height: 450px;
+    margin: 2.5% auto;
+
+    border: 2px solid black;
+    border-radius: 16px;
+
+}
+
+#opcoes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+#opcoes span{
+    width: 95%;
+    height: 40px;
+    font-size: 26px;
+    font-weight: 900;
+
+    border: 1px solid black;
+    border-radius: 8px;
+}
+
+#opcoes span:hover{
+    background-color: #FDC409;
 }

@@ -25,7 +25,7 @@
             <div class="account">
                 <div class="notLoggedIn" id="notLoggedIn">
                     <a href="login.html">Login</a>
-                    <a href="cadastro.html" class="register">Cadastre-se</a>
+                    <a href="cadastro.html" id="registerButton" class="register">Cadastre-se</a>
                 </div>
 
                 <div class="loggedIn" id="loggedIn">
@@ -35,14 +35,57 @@
             </div>
         </div>
 
-        <div class="startGame">
+        <div class="startGame" id="startGame">
             <h1>
-                Olá, <span id="ssUsername">Yielder</span>! Vamos dar o primeiro passo com segurança?
+                Olá, <span id="ssUsername">Yielder</span>! <br>Vamos dar o primeiro passo com segurança?
             </h1>
 
-            <p>No mercado financeiro, não existe certo ou errado, existe o que funciona para você. Responda a 3 perguntas rápidas para calibrarmos o seu perfil. O resultado vai destravar as melhores estratégias para você multiplicar o seu patrimônio sem surpresas pelo caminho, garantindo que a sua futura carteira seja construída com a estratégia perfeita para os seus objetivos e para o seu sono tranquilo. Leva menos de 5 minuto!</p>
+            <p>No mercado financeiro, não existe certo ou errado, existe o que funciona para você. Responda a 3
+                perguntas rápidas para calibrarmos o seu perfil. O resultado vai destravar as melhores estratégias para
+                você multiplicar o seu patrimônio sem surpresas pelo caminho, garantindo que a sua futura carteira seja
+                construída com a estratégia perfeita para os seus objetivos e para o seu sono tranquilo. Leva menos de 5
+                minuto!</p>
 
-            <button class="startButton">Iniciar o Quiz</button>
+            <button class="startButton" onclick="startQuiz()">Iniciar o Quiz</button>
+        </div>
+
+        <div class="quiz" id="quiz">
+
+            <div id="infoQuestao">
+                <span>Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+                    questões.</span>
+            </div>
+
+            <div id="perguntaDaQuestaoAtual">
+                <span id="spanQuestaoExibida"></span>
+            </div>
+
+            <div id="infoAlternativas">
+                <span><em>Escolha uma opção dentre as abaixo:</em></span>
+            </div>
+
+            <div id="opcoes">
+                <span>
+                    <input type="radio" id="primeiraOpcao" name="option" class="radio" value="alternativaA" />
+                    <label for="primeiraOpcao" class="option" id="labelOpcaoUm"></label>
+                </span>
+                <span>
+                    <input type="radio" id="segundaOpcao" name="option" class="radio" value="alternativaB" />
+                    <label for="segundaOpcao" class="option" id="labelOpcaoDois"></label>
+                </span>
+                <span>
+                    <input type="radio" id="terceiraOpcao" name="option" class="radio" value="alternativaC" />
+                    <label for="terceiraOpcao" class="option" id="labelOpcaoTres"></label>
+                </span>
+            </div>
+
+            <div id="botoes" class="flex-colunar padding-8">
+                <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                <button onclick="avancar()" id="btnProx" disabled>Avançar para próxima questão</button>
+                <!-- <button onclick="finalizar()" id="btnConcluir" disabled>Finalizar Quiz</button> -->
+                <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+            </div>
+
         </div>
 
 
@@ -61,6 +104,123 @@
         document.getElementById("loggedIn").style.display = "flex"
     } else {
         document.getElementById("notLoggedIn").style.display = "flex"
+    }
+
+</script>
+
+<script>
+    const listaDeQuestoes = [
+
+        {
+            pergunta: "Qual é a sua maior prioridade ao investir o seu dinheiro hoje?",
+            alternativaA: "Não perder nada do que eu já tenho, quero ter segurança total",
+            alternativaB: "Proteger meu dinheiro da inflação e ter um ganho moderado.",
+            alternativaC: "Maximizar meus ganhos no longo prazo, aceitando riscos para crescer.",
+        },
+
+        {
+            pergunta: "Imagine que você investiu R$ 1.000 e, no mês seguinte, viu que agora tem R$ 850 devido a uma queda no mercado. Qual sua reação?",
+            alternativaA: "Entro em pânico e retiro todo o dinheiro para evitar perdas maiores.",
+            alternativaB: "Fico desconfortável, mas mantenho o investimento esperando a recuperação.",
+            alternativaC: "Vejo como uma oportunidade de comprar mais ativos por um preço mais barato.",
+        },
+
+        {
+            pergunta: "Por quanto tempo você pretende deixar seu dinheiro investido antes de começar a usá-lo?",
+            alternativaA: "Curto prazo (menos de 1 ano). Preciso dele disponível a qualquer momento.",
+            alternativaB: "Médio prazo (de 1 a 5 anos). Pretendo realizar um objetivo específico.",
+            alternativaC: "Longo prazo (mais de 5 anos). Meu foco é aposentadoria ou construção de riqueza.",
+        }
+
+    ]
+</script>
+
+<script>
+    let numeroDaQuestaoAtual = 0
+    let quantidadeDeQuestoes = listaDeQuestoes.length
+    // let isUltima = numeroDaQuestaoAtual == quantidadeDeQuestoes-1 ? true : false
+
+    function startQuiz() {
+        document.getElementById('startGame').style.display = "none";
+        document.getElementById('quiz').style.display = "flex";
+
+        document.getElementById('qtdQuestoes').innerHTML = quantidadeDeQuestoes
+        preencherHTMLcomQuestaoAtual(0)
+
+        btnSubmeter.disabled = false
+        btnProx.disabled = true
+        // btnConcluir.disabled = true
+        btnTentarNovamente.disabled = true
+    }
+
+    function preencherHTMLcomQuestaoAtual(index) {
+        habilitarAlternativas(true)
+        const questaoAtual = listaDeQuestoes[index]
+        numeroDaQuestaoAtual = index
+        console.log("questaoAtual")
+        console.log(questaoAtual)
+        document.getElementById("spanNumeroDaQuestaoAtual").innerHTML = Number(index) + 1 // ajustando porque o index começa em 0
+        document.getElementById("spanQuestaoExibida").innerHTML = questaoAtual.pergunta;
+        document.getElementById("labelOpcaoUm").innerHTML = questaoAtual.alternativaA;
+        document.getElementById("labelOpcaoDois").innerHTML = questaoAtual.alternativaB;
+        document.getElementById("labelOpcaoTres").innerHTML = questaoAtual.alternativaC;
+    }
+
+    function habilitarAlternativas(trueOrFalse) {
+        let opcaoEscolhida = trueOrFalse ? false : true
+
+        primeiraOpcao.disabled = opcaoEscolhida
+        segundaOpcao.disabled = opcaoEscolhida
+        terceiraOpcao.disabled = opcaoEscolhida
+    }
+
+    function submeter() {
+        const options = document.getElementsByName("option"); // recupera alternativas no html
+
+        let hasChecked = false
+        for (let i = 0; i < options.length; i++) {
+            if (options[i].checked) {
+                hasChecked = true
+                break
+            }
+        }
+
+        if (!hasChecked) {
+            alert("Não há alternativas escolhidas. Escolha uma opção.")
+        } else {
+            btnSubmeter.disabled = true
+            btnProx.disabled = false
+
+            habilitarAlternativas(false)
+
+        }
+    }
+
+    function avancar() {
+        btnProx.disabled = true
+        btnSubmeter.disabled = false
+        numeroDaQuestaoAtual++
+        desmarcarRadioButtons()
+
+        if (numeroDaQuestaoAtual < quantidadeDeQuestoes - 1) {
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else if (numeroDaQuestaoAtual == quantidadeDeQuestoes - 1) {
+            alert("Atenção... a próxima é a ultima questão!")
+            preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual)
+        } else {
+            finalizarJogo()
+        }
+    }
+
+    function desmarcarRadioButtons() {
+        const options = document.getElementsByName("option");
+        for (let i = 0; i < options.length; i++) {
+            options[i].checked = false;
+        }
+    }
+
+    function finalizarJogo() {
+        alert(`acabou kk`)
     }
 
 </script>

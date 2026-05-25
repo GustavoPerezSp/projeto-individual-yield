@@ -163,3 +163,7 @@ a {
 #opcoes span:hover{
     background-color: #FDC409;
 }
+
+#modal{
+    display: none;
+}

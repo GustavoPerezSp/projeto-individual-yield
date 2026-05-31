@@ -7,7 +7,8 @@ CREATE TABLE Yielder(
   nomeDeUsuario VARCHAR(45) NOT NULL UNIQUE,
   dataNascimento DATE NOT NULL,
   email VARCHAR(45) NOT NULL UNIQUE,
-  senha VARCHAR(45) NOT NULL
+  senha VARCHAR(45) NOT NULL,
+  perfilDeInvestidor VARCHAR(45) CHECK (perfilDeInvestidor IN('Conservador', 'Moderado', 'Arrojado'))
 );
 
 CREATE TABLE Carteira(

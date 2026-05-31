@@ -78,7 +78,40 @@ function cadastrar(req, res) {
     }
 }
 
+
+function perfil(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var perfilDeUsuario = req.body.perfilDeUsuarioServer;
+    var idYielder = req.body.idYielderServer;
+
+    // Faça as validações dos valores
+    if (perfilDeUsuario == undefined) {
+        res.status(400).send("Seu perfil está undefined!");
+    }
+
+    // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+    usuarioModel.perfil(perfilDeUsuario, idYielder)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao cadastrar o perfil! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+
+
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    perfil
 }

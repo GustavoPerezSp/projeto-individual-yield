@@ -234,20 +234,47 @@
     }
 
     function finalizarJogo() {
-        
-        if(riskLevel <= 4){
+
+        if (riskLevel <= 4) {
             investorProfile = `Conservador`
-        }else if(riskLevel <= 7){
+        } else if (riskLevel <= 7) {
             investorProfile = `Moderado`
-        }else{
+        } else {
             investorProfile = `Arrojado`
         }
-        
+
         sInvestorProfile.innerHTML = investorProfile;
 
         document.getElementById('quiz').style.display = "none";
         document.getElementById('modal').style.display = "flex";
 
+
+        if (sessionStorage.ID_USUARIO != null) {
+            var perfilDeInvestidorVar = investorProfile;
+            var idYielder = sessionStorage.ID_USUARIO;
+
+            fetch("/usuarios/perfil", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    perfilDeUsuarioServer: perfilDeInvestidorVar,
+                    idYielderServer: idYielder
+                })
+                ,
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    finalizarAguardar();
+                });
+
+            return false;
+        }
     }
+
 
 </script>

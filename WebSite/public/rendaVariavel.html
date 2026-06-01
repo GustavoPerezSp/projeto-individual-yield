@@ -1,11 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Renda Variavel</title>
+    <title>Renda Variável</title>
+    <link rel="stylesheet" href="assets/css/rendas.css">
 </head>
+
 <body>
-    
+
+    <div class="content">
+
+        <div class="header">
+            <div class="logo">
+                <a href="">YieldWay</a>
+            </div>
+
+            <div class="links">
+                <a href="index.html">Página Inicial</a>
+                <a href="calculadoras.html">Calculadoras</a>
+            </div>
+
+            <div class="account">
+                <div class="notLoggedIn" id="notLoggedIn">
+                    <a href="login.html">Login</a>
+                    <a href="cadastro.html" id="registerButton" class="register">Cadastre-se</a>
+                </div>
+
+                <div class="loggedIn" id="loggedIn">
+                    <p class="greeting">Olá, <span id="sUsername"></span>!</p>
+                    <p class="goodbye" onclick="limparSessao()">Sair da Conta</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="startSection">
+
+            <div class="startSection__tittle">
+                <h1>Seja sócio dos maiores negócios. É hora de escalar.</h1>
+                <h4>A Renda Variável é o motor de crescimento do investidor arrojado. Descubra como participar dos
+                    lucros das grandes corporações e buscar retornos exponenciais.</h4>
+            </div>
+
+            <div class="startSection__next">
+                <button>
+                    <a id="wannaStart" href="#explainingSection">Quero Começar</a>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="explainingSection" id="explainingSection">
+
+            <div class="explainingSection__tittle">
+                <h1>O que é Renda Variável, afinal?</h1>
+                <p>Investir em Renda Variável significa se tornar coproprietário de negócios reais. Em vez de apenas
+                    emprestar dinheiro para receber juros fixos, você compra fatias de empresas ou de imóveis. Aqui não
+                    há
+                    garantias de ganhos previsíveis, mas é exatamente onde você destrava a chance de lucros exponenciais
+                    através
+                    da valorização e de dividendos direto na sua conta!
+                </p>
+            </div>
+
+            <div class="explainingSection__strategy">
+                <h2>
+                    Escolha a Sua Estratégia:
+                </h2>
+
+
+                <div class="carousel">
+
+                    <div class="card">
+                        <h2>Ações</h2>
+                        <p>Fatias de grandes empresas. Ao comprar uma ação, você se torna sócio e passa a ter direito a
+                            uma parte dos lucros distribuídos (dividendos).</p>
+                    </div>
+
+                    <div class="card">
+                        <h2>Fundos Imobiliários</h2>
+                        <p>Grandes imóveis como shoppings e galpões logísticos divididos em cotas. O grande trunfo aqui
+                            é o Yield mensal: você recebe "aluguéis" na conta todo mês.</p>
+                    </div>
+
+                    <div class="card">
+                        <h2>ETFs</h2>
+                        <p>Fundos de índice que replicam carteiras inteiras (como as maiores empresas do Brasil ou dos
+                            EUA). Ideal para diversificar tudo de uma única vez.</p>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </div>
+
 </body>
+
 </html>
+
+<script>
+
+    if (sessionStorage.ID_USUARIO != null) {
+        sUsername.innerHTML = sessionStorage.NOME_USUARIO
+        ssUsername.innerHTML = sessionStorage.NOME_USUARIO
+        document.getElementById("loggedIn").style.display = "flex"
+    } else {
+        document.getElementById("notLoggedIn").style.display = "flex"
+    }
+
+</script>
+
+<script>
+
+    let strategy = [
+
+        {
+            titulo: '',
+            texto: ''
+        },
+
+        {
+            titulo: '',
+            texto: ''
+        },
+
+        {
+            titulo: '',
+            texto: ''
+        }
+    ]
+
+</script>

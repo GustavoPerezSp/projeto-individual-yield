@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renda Fixa</title>
+    <link rel="stylesheet" href="assets/css/rendas.css">
+</head>
+
+<body>
+
+    <div class="content">
+
+         <div class="header">
+            <div class="logo">
+                <a href="">YieldWay</a>
+            </div>
+
+            <div class="links">
+                <a href="index.html">Página Inicial</a>
+                <a href="calculadoras.html">Calculadoras</a>
+            </div>
+
+            <div class="account">
+                <div class="notLoggedIn" id="notLoggedIn">
+                    <a href="login.html">Login</a>
+                    <a href="cadastro.html" id="registerButton" class="register">Cadastre-se</a>
+                </div>
+
+                <div class="loggedIn" id="loggedIn">
+                    <p class="greeting">Olá, <span id="sUsername"></span>!</p>
+                    <p class="goodbye" onclick="limparSessao()">Sair da Conta</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="startSection">
+
+            <div class="startSection__tittle">
+                <h1>Chega de pagar juros. É hora de recebê-los.</h1>
+                <h4>A Renda Fixa é o porto seguro do investidor inteligente. Descubra como virar o jogo contra os bancos
+                    e ver seu dinheiro crescer com total previsibilidade.</h4>
+            </div>
+
+            <div class="startSection__next">
+                <button>
+                    <a id="wannaStart" href="#explainingSection">Quero Começar</a>
+                </button>
+            </div>
+
+        </div>
+
+        <div class="explainingSection" id="explainingSection">
+
+            <div class="explainingSection__tittle">
+                <h1>O que é Renda Fixa, afinal?</h1>
+                <p>Investir em Renda Fixa nada mais é do que fazer um empréstimo invertido. Em vez de você pegar
+                    dinheiro
+                    com o banco e pagar juros abusivos, você empresta o seu dinheiro para o Governo, bancos ou empresas
+                    brasileiras. Em troca, eles te devolvem o valor com o acréscimo de juros. Você vira o dono do Yield!
+                </p>
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    if (sessionStorage.ID_USUARIO != null) {
+        sUsername.innerHTML = sessionStorage.NOME_USUARIO
+        ssUsername.innerHTML = sessionStorage.NOME_USUARIO
+        document.getElementById("loggedIn").style.display = "flex"
+    } else {
+        document.getElementById("notLoggedIn").style.display = "flex"
+    }
+
+</script>

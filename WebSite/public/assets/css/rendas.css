@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: "Righteous", sans-serif;
+}
+
+a {
+    color: #FFFFFF;
+}
+
+.content {
+    width: 100%;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    background-color: #111111;
+    padding: 2%;
+    font-size: 16px;
+}
+
+.header .logo {
+    font-size: 40px;
+}
+
+.links{
+    display: flex;
+    gap: 20px;
+}
+.header a:hover {
+    color: #FDC409;
+}
+
+.register {
+    background-color: #FDC409;
+    padding: 4px;
+    border-radius: 16px;
+    color: #111111;
+}
+
+.register:hover {
+    color: #FFFFFF;
+}
+
+#registerButton:hover{
+    color: #FFFFFF;
+}
+
+.account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15%;
+}
+
+.account button {
+    background-color: #FDC409;
+    color: #FFFFFF;
+    font-weight: bolder;
+}
+
+.notLoggedIn{
+  display: none;
+  width: 100%;
+  gap: 10px;
+}
+
+.loggedIn{
+  display: none;
+  width: 100%;
+  gap: 10px;
+  color: #FFFFFF;
+}
+
+.loggedIn:hover .greeting{
+    display: none;
+}
+
+.loggedIn .goodbye{
+    display: none;
+}
+
+.loggedIn:hover .goodbye{
+    display: block;
+    cursor: pointer;
+}
+
+.startSection{
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+
+    height: 450px;
+}
+
+.startSection__tittle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;    
+
+    width: 40%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.startSection__next{
+    width: 40%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.startSection__next button{
+    width: 100%;
+    height: 100%;
+    
+
+    background-color: #fdc4097c;
+    border: 0.5px solid black;
+    border-radius: 16px;
+}
+
+#wannaStart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    height: 100%;
+    color: #111111;
+    border-radius: 16px;
+    
+    font-size: 62px;
+}
+
+.startSection__next a:hover, button:hover{
+    cursor: pointer;
+    background-color: #FDC409;
+}
+
+.explainingSection{
+    margin-top: 60px;
+
+    width: 100%;
+    height: 600px;
+}
+
+.explainingSection__tittle{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 25px;
+}

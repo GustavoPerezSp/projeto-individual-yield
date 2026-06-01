@@ -141,7 +141,7 @@ a {
     font-size: 62px;
 }
 
-.startSection__next a:hover, button:hover{
+.startSection__next a:hover, .startSection__next button:hover{
     cursor: pointer;
     background-color: #FDC409;
 }
@@ -157,6 +157,32 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 
     padding: 25px;
+}
+
+.explainingSection__strategy{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-top: 45px;
+}
+
+.carousel{
+    display: flex;
+    gap: 15px;
+}
+
+.card{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 225px;
+    padding: 25px;
+    border: 1px solid black;
+    border-radius: 8px;
 }

@@ -29,7 +29,7 @@
                 <a href="../index.html">Voltar para Home</a>
                 <a href="">Meu Perfil</a>
                 <a href="">Gerenciador</a>
-                <a href="">Calculadoras</a>
+                <a href="../calculadoras.html">Calculadoras</a>
             </div>
 
             <div class="account">
@@ -120,7 +120,6 @@
                     <div class="kpis_graphs__kpi__precoMedio">
                         <h6>Preço Médio</h6>
                         <select id="sStock" onchange="getKpiPrecoMedio(sessionStorage.ID_USUARIO)">
-                            <option selected>Selecione</option>
                             <!-- options do banco -->
                         </select>
                     </div>
@@ -541,7 +540,7 @@
         let kpiData = resultAverageTicket[0].Ticket_Medio;
         console.log(kpiData)
 
-        avgInvestmentValue.innerHTML = kpiData.toFixed(2);
+        avgInvestmentValue.innerHTML = kpiData;
     }
 
 </script>
@@ -597,7 +596,7 @@
             data: {
                 labels: labelsMonth,
                 datasets: [{
-                    label: 'Patrimonio Nos Últimos 12 Meses',
+                    label: 'Valor Investido no Mês (Ultimos 12 Meses)',
                     data: heritageData,
                     borderWidth: 1,
                     backgroundColor: [
